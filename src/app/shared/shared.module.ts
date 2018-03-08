@@ -43,6 +43,8 @@ import {
 import { FomComponent } from './animated-input/animated-input.component';
 import { CustomInputComponent } from './custom-input/custom-input.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { CalendarModule } from 'angular-calendar';
+import { CalendarComponent } from './calendar/calendar.component';
 
 @NgModule({
   imports: [
@@ -57,7 +59,8 @@ import { BrowserModule } from '@angular/platform-browser';
     MatSidenavModule,
     MatFormFieldModule,
     MatInputModule,
-    MatTooltipModule
+    MatTooltipModule,
+    CalendarModule.forRoot()
   ],
   exports: [
     BrowserAnimationsModule,
@@ -99,11 +102,13 @@ import { BrowserModule } from '@angular/platform-browser';
     MatTooltipModule,
 
     FomComponent,
-    CustomInputComponent
+    CustomInputComponent,
+    CalendarComponent
   ],
   declarations: [
     FomComponent,
-    CustomInputComponent
+    CustomInputComponent,
+    CalendarComponent
   ]
 })
 export class SharedModule { }

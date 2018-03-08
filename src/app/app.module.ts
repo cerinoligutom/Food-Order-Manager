@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SharedModule } from './shared/shared.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 const ROUTES = [
   {
@@ -15,6 +16,10 @@ const ROUTES = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'dashboard',
+    loadChildren: ()=> DashboardModule
   }
 ];
 
@@ -26,7 +31,8 @@ const ROUTES = [
   imports: [
     BrowserModule,
     SharedModule,
-    RouterModule.forRoot(ROUTES)
+    RouterModule.forRoot(ROUTES),
+    DashboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
