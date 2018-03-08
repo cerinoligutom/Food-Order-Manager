@@ -1,0 +1,20 @@
+<mat-form-field>
+  <input matInput
+  [(ngModel)]="value"
+  [name]="name"
+  #fomInput="ngModel"
+  class="form-control"
+  (blur)="onBlur()"
+  [required]="required"
+  [email]="email"
+  [placeholder]="placeholder"
+  [type]="type"
+  >
+
+  <mat-error *ngIf="fomInput.errors?.email && !fomInput.errors?.required">
+    Please enter a valid email address
+  </mat-error>
+  <mat-error *ngIf="fomInput.errors?.required">
+    {{ name }} is <strong>required</strong>
+  </mat-error>
+</mat-form-field>

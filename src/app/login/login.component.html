@@ -1,0 +1,5 @@
+<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm.value)">
+  <custom-input name="Email" [(ngModel)]="dataModel" type="email" placeholder="Email" email required> </custom-input>
+  <custom-input name="Password" [(ngModel)]="dataModel" type="password" placeholder="Password" required> </custom-input>
+  <button mat-button type="submit">Login</button>
+</form>
