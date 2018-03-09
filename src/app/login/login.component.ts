@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmailValidator } from '@angular/forms';
+import { Router } from '@angular/router';
 
 class LoginForm{
   username: string = '';
@@ -15,7 +16,7 @@ class LoginForm{
 export class LoginComponent implements OnInit {
   dataModel: string = '';
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   form: LoginForm = new LoginForm();
 
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(form: LoginForm){
     console.log(form);
+    this.router.navigate(['/user-profile']);
   }
 
 }

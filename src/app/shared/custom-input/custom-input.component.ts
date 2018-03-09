@@ -14,6 +14,7 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 @Component({
   selector: 'custom-input',
   templateUrl: './custom-input.component.html',
+  styleUrls: ['./custom-input.component.scss'],
   providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
 })
 export class CustomInputComponent implements ControlValueAccessor {

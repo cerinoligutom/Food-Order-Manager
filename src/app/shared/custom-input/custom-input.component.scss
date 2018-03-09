@@ -1,0 +1,10 @@
+.mat-input-container {
+    width: 100%;
+    .mat-input-wrapper, .mat-form-field-wrapper {
+        border-radius: 2px !important;
+        .mat-input-flex, .mat-form-field-flex {
+            padding: 5px;
+            background: #efefef;
+        }
+    }
+}
