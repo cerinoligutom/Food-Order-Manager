@@ -5,86 +5,11 @@
 .calendar-container {
   padding: 10px;
 }
-/* The actual timeline (the vertical ruler) */
-.timeline {
-    position: relative;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* The actual timeline (the vertical ruler) */
-.timeline::after {
-    content: '';
-    position: absolute;
-    width: 2px;
-    background-color: rgb(151, 151, 151);
-    top: 0;
-    bottom: 0;
-    left: 1%;
-    margin-left: -3px;
-}
 
 /* Container around content */
 .container {
     position: relative;
     background-color: inherit;
-}
-
-/* The circles on the timeline */
-.timeline-circle::before {
-    content: '';
-    position: absolute;
-    width: 18px;
-    height: 18px;
-    left: -5.5%;
-    background-color: white;
-    border: 2px solid #FF9F55;
-    top: 8px;
-    border-radius: 50%;
-    z-index: 1;
-}
-
-/* Place the container to the left */
-.left {
-    left: 0;
-}
-
-/* Place the container to the right */
-.right {
-    left: 50%;
-}
-
-/* Add arrows to the left container (pointing right) */
-.left::before {
-    content: " ";
-    height: 0;
-    position: absolute;
-    top: 22px;
-    width: 0;
-    z-index: 1;
-    right: 30px;
-    border: medium solid white;
-    border-width: 10px 0 10px 10px;
-    border-color: transparent transparent transparent white;
-}
-
-/* Add arrows to the right container (pointing left) */
-.right::before {
-    content: " ";
-    height: 0;
-    position: absolute;
-    top: 22px;
-    width: 0;
-    z-index: 1;
-    left: 30px;
-    border: medium solid white;
-    border-width: 10px 10px 10px 0;
-    border-color: transparent white transparent transparent;
-}
-
-/* Fix the circle for containers on the right side */
-.right::after {
-    left: -16px;
 }
 
 /* The actual content */
@@ -96,44 +21,122 @@
 }
 .card {
     box-shadow: 0px 0px 3px 0px #9e9e9e;
-    padding: 10px;
+    padding: 1em 2em;
     margin: 0 0 10px 0;
     background: #fff;
-    .arrow_box {
+    /* The actual timeline (the vertical ruler) */
+    .timeline {
         position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+        .arrow_box {
+            position: relative;
+        }
+        .arrow_box:after, .arrow_box:before {
+            right: 100%;
+            top: 25px;
+            border: solid transparent;
+            content: "";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+        }
+    
+        .arrow_box:after {
+            border-color: rgba(136, 183, 213, 0);
+            border-right-color: #fff;
+            border-width: 7px;
+            margin-top: -16px;
+        }
+    
+        .arrow_box:before {
+            border-color: rgba(194, 225, 245, 0);
+            border-right-color: #c7adad63;
+            border-width: 9px;
+            margin-top: -18px;
+        }
+        .ng-star-inserted {
+            // box-shadow: 0px 0px 3px 0px #a2a2a2;
+            padding: 10px 0;
+            margin: 10px 25px;
+        }
+        .timestamp {
+            font-style: italic;
+            color: #989898;
+            align-content: flex-end;
+        }
+        
+        .timeline-circle {
+            border-bottom: 1px solid #e6e5e5;
+        }
+    
+        /* The circles on the timeline */
+        .timeline-circle::before {
+            content: '';
+            position: absolute;
+            width: 21px;
+            height: 21px;
+            left: -10px;
+            background-color: #ef51b5;
+            border: 5px solid #fff;
+            border-radius: 50%;
+            z-index: 1;
+        }
+    
+        /* Place the container to the left */
+        .left {
+            left: 0;
+        }
+    
+        /* Place the container to the right */
+        .right {
+            left: 50%;
+        }
+    
+        /* Add arrows to the left container (pointing right) */
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid white;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent white;
+        }
+    
+        /* Add arrows to the right container (pointing left) */
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid white;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent white transparent transparent;
+        }
+    
+        /* Fix the circle for containers on the right side */
+        .right::after {
+            left: -16px;
+        }
     }
-    .arrow_box:after, .arrow_box:before {
-        right: 100%;
-        top: 25px;
-        border: solid transparent;
-        content: "";
-        height: 0;
-        width: 0;
+    
+    /* The actual timeline (the vertical ruler) */
+    .timeline::after {
+        content: '';
         position: absolute;
-        pointer-events: none;
-    }
-
-    .arrow_box:after {
-        border-color: rgba(136, 183, 213, 0);
-        border-right-color: #fff;
-        border-width: 7px;
-        margin-top: -16px;
-    }
-
-    .arrow_box:before {
-        border-color: rgba(194, 225, 245, 0);
-        border-right-color: #c7adad63;
-        border-width: 9px;
-        margin-top: -18px;
-    }
-    .ng-star-inserted {
-        box-shadow: 0px 0px 3px 0px #a2a2a2;
-        padding: 10px;
-        margin: 10px 25px;
-    }
-    .timestamp {
-        font-style: italic;
-        color: rgb(216, 216, 216);
-        align-content: flex-end;
+        width: 1px;
+        background-color: #e6e5e5;
+        top: 0;
+        bottom: 0;
+        // left: 1%;
+        // margin-left: -3px;
     }
 }

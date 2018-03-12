@@ -1,5 +1,8 @@
 <div class="app-container">
   <mat-toolbar color="primary">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
     <h1 class="app-name">Food Order Manager</h1>
   </mat-toolbar>
 
@@ -11,10 +14,7 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
-      <div class="container-fluid">
-        <button mat-icon-button (click)="sidenav.toggle()">
-          <mat-icon>menu</mat-icon>
-        </button>
+      <div class="container-fluid dashboard">
         <div class="row">
           <router-outlet></router-outlet>
         </div>

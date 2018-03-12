@@ -2,9 +2,9 @@
   <div class="col-md-6 activity">
     <div class="card">
       <div class="timeline">
-        <p *ngFor="let content of fillerContent" class="arrow_box">
-          <span class="timeline-circle">{{content}}
-            <div class="timestamp">5:00pm</div>
+        <p *ngFor="let content of fillerContent" class="timeline-circle">
+          <span>{{content}}
+            <div class="timestamp">{{today | date: 'medium'}}</div>
           </span>
         </p>
       </div>
