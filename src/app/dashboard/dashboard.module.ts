@@ -5,7 +5,6 @@ import { DashboardComponent } from './dashboard-home/dashboard-home.component';
 import { ActivityAreaComponent } from './activity-area/activity-area.component';
 
 
-
 @NgModule({
   imports: [
     DashboardRoutingModule,

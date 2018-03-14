@@ -45,11 +45,13 @@ import { CustomInputComponent } from './custom-input/custom-input.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { CalendarModule } from 'angular-calendar';
 import { CalendarComponent } from './calendar/calendar.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   imports: [
     FormsModule,
     BrowserModule,
+    ChartsModule,
 
     MatButtonModule,
     MatMenuModule,
@@ -103,7 +105,8 @@ import { CalendarComponent } from './calendar/calendar.component';
 
     FomComponent,
     CustomInputComponent,
-    CalendarComponent
+    CalendarComponent,
+    ChartsModule
   ],
   declarations: [
     FomComponent,

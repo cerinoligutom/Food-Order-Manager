@@ -11,8 +11,28 @@
     </div>
   </div>
   <div class="col-md-6 statistics">
-    <div class="card">
-
+    <div class="row">
+      <div class="col-md-12">
+        <div style="display: block">
+          <canvas baseChart
+                  [data]="polarAreaChartData"
+                  [labels]="polarAreaChartLabels"
+                  [legend]="polarAreaLegend"
+                  [chartType]="polarAreaChartType"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+        </div>
+      </div>
+      <div *ngFor="let vendor of vendors | async">
+        <p class="name">{{vendor.name}} </p>
+      </div>
+      <!-- <div class="col-md-6" style="margin-bottom: 10px">
+        <table class="table table-responsive table-condensed">
+          <tr>
+            <th *ngFor="let label of lineChartLabels">{{label}}</th>
+          </tr>
+        </table>
+      </div> -->
     </div>
   </div>
 

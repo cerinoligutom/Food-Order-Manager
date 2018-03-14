@@ -6,12 +6,16 @@
 
 // angular-calendar
 @import "../node_modules/angular-calendar/scss/angular-calendar";
+
+@import "./assets/styles/variables";
+
 html, body {
     height: 100%;
 }
 
 body {
     margin: 0;
+    overflow: hidden;
 }
 
 .mat-input-container {
@@ -28,5 +32,8 @@ body {
 .dashboard {
     app-activity-area {
         width: 100%;
+        .row:first-child {
+            width: 100%;
+        }
     }
 }

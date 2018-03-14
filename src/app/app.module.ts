@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SharedModule } from './shared/shared.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { GraphQlModule } from './shared/graphql.module';
 
 const ROUTES = [
   {
@@ -30,9 +31,10 @@ const ROUTES = [
   ],
   imports: [
     BrowserModule,
+    GraphQlModule,
     SharedModule,
     RouterModule.forRoot(ROUTES),
-    DashboardModule
+    DashboardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
