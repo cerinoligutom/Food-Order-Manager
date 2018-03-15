@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import gql from 'graphql-tag';
 
 import { Vendor, VendorQuery } from '../../types';
+import { VendorService } from '../../core/services/vendor/vendor.service';
 
 @Component({
   selector: 'app-activity-area',
@@ -13,7 +14,8 @@ import { Vendor, VendorQuery } from '../../types';
   styleUrls: ['./activity-area.component.scss']
 })
 export class ActivityAreaComponent implements OnInit {
-  vendors: Observable<Vendor[]>;
+  // vendors: Observable<Vendor[]>;
+  vendors: Vendor[];
 
   fillerContent = Array(10).fill(0).map(() =>
   `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
@@ -39,24 +41,11 @@ export class ActivityAreaComponent implements OnInit {
     console.log(e);
   }
   
-  constructor(private apollo: Apollo) { }
+  // constructor(private apollo: Apollo) { }
+  constructor(private apollo: Apollo, private _vendorService: VendorService){
 
-  ngOnInit() {
-    this.vendors = this.apollo.watchQuery<VendorQuery>({
-      query: gql`
-        query Vendors {
-          allVendors: Vendors {
-            id
-            name
-            image
-          }
-        }
-      `
-    })
-    .valueChanges
-    .pipe(
-      map(result => result.data.allVendors)
-    );
   }
-
+  ngOnInit() {
+    this._vendorService.getVendors();
+  }
 }

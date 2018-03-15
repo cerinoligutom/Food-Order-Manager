@@ -27,7 +27,7 @@ export class GraphQlModule {
         httpLink: HttpLink
     ){
         apollo.create({
-            link: httpLink.create({ uri: 'http://192.168.1.32:3000/api'}),
+            link: httpLink.create({ uri: 'http://192.168.1.34:3000/api'}),
             cache: new InMemoryCache()
         })
     }

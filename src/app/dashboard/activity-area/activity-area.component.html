@@ -23,22 +23,10 @@
                   (chartClick)="chartClicked($event)"></canvas>
         </div>
       </div>
-      <div *ngFor="let vendor of vendors | async">
+      <!-- <div *ngFor="let vendor of vendors | async"> -->
+        <div *ngFor="let vendor of vendors">
         <p class="name">{{vendor.name}} </p>
       </div>
-      <!-- <div class="col-md-6" style="margin-bottom: 10px">
-        <table class="table table-responsive table-condensed">
-          <tr>
-            <th *ngFor="let label of lineChartLabels">{{label}}</th>
-          </tr>
-        </table>
-      </div> -->
     </div>
   </div>
-
-  <!-- <div class="col-md-5 calendar-container">
-    <div class="card">
-      <shared-calendar></shared-calendar>
-    </div>
-  </div> -->
 </div>
