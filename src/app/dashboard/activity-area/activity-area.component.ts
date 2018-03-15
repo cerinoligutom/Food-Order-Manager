@@ -4,6 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { TransactionFormComponent } from "../../transaction/transaction-form/transaction-form.component";
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
+import { TransactionFormComponent } from "../../transaction/transaction-form/transaction-form.component";
 
 import gql from 'graphql-tag';
 
@@ -53,4 +55,9 @@ export class ActivityAreaComponent implements OnInit {
   ngOnInit() {
     this.transactions = [];
   }
+
+
+
+
+
 }
