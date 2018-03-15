@@ -3,13 +3,16 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardComponent } from './dashboard-home/dashboard-home.component';
 import { ActivityAreaComponent } from './activity-area/activity-area.component';
-
-
+import { TransactionModule } from '../transaction/transaction.module';
 @NgModule({
   imports: [
+    SharedModule,
     DashboardRoutingModule,
-    SharedModule
+    TransactionModule
+  ],
+  exports: [
+    TransactionModule
   ],
   declarations: [DashboardComponent, ActivityAreaComponent]
 })
-export class DashboardModule {}
+export class DashboardModule { }

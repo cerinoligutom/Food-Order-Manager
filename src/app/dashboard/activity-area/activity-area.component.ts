@@ -2,6 +2,8 @@ import { Component, OnInit, Query } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
+import { TransactionFormComponent } from "../../transaction/transaction-form/transaction-form.component";
 
 import gql from 'graphql-tag';
 
@@ -14,15 +16,7 @@ import { VendorService } from '../../core/services/vendor/vendor.service';
   styleUrls: ['./activity-area.component.scss']
 })
 export class ActivityAreaComponent implements OnInit {
-  // vendors: Observable<Vendor[]>;
-  vendors: Vendor[];
-
-  fillerContent = Array(10).fill(0).map(() =>
-  `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-   labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-   laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-   voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-   cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`);
+  transactions: any[];
   today = Date.now();
   
   // PolarArea
@@ -44,8 +38,29 @@ export class ActivityAreaComponent implements OnInit {
   // constructor(private apollo: Apollo) { }
   constructor(private apollo: Apollo, private _vendorService: VendorService){
 
+  constructor(
+    public dialog: MatDialog
+  ) { }
+
+  openDialog(): void {
+    let dialogRef = this.dialog.open(TransactionFormComponent, {
+      width: '300px',
+      data: { }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.transactions.push(result);
+      console.log('transaction result', result);
+    });
   }
+
   ngOnInit() {
-    this._vendorService.getVendors();
+    this.transactions = [];
   }
+
+
+
+
+
 }
