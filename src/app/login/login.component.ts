@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { EmailValidator } from '@angular/forms';
 
-class LoginForm{
+
+class LoginForm {
   username: string = '';
   email: string = '';
   password: string = '';
@@ -13,17 +15,13 @@ class LoginForm{
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  dataModel: string = '';
-
+  // dataModel: string = '';
   constructor() { }
 
-  form: LoginForm = new LoginForm();
+  // form: LoginForm = new LoginForm();
 
   ngOnInit() {
   }
 
-  onSubmit(form: LoginForm){
-    console.log(form);
-  }
 
 }

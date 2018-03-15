@@ -6,3 +6,6 @@
 
 // angular-calendar
 @import "../node_modules/angular-calendar/scss/angular-calendar";
+
+
+router-outlet + * { flex: 1 1 auto ; display: flex ; flex-direction: column ; }

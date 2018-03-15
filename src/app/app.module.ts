@@ -1,4 +1,3 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
@@ -6,6 +5,9 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SharedModule } from './shared/shared.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 
 const ROUTES = [
   {
@@ -19,7 +21,7 @@ const ROUTES = [
   },
   {
     path: 'dashboard',
-    loadChildren: ()=> DashboardModule
+    loadChildren: () => DashboardModule
   }
 ];
 
@@ -29,10 +31,10 @@ const ROUTES = [
     LoginComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserAnimationsModule,
     SharedModule,
     RouterModule.forRoot(ROUTES),
-    DashboardModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

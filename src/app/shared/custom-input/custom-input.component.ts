@@ -25,6 +25,8 @@ export class CustomInputComponent implements ControlValueAccessor {
   @Input() required: boolean;
   @Input() email: boolean;
 
+  @Input() options: OptionItem[];
+
 
   // @Input() ngModel: string;
   // @Output() ngModelChange: EventEmitter<string> = new EventEmitter<string>();
@@ -64,7 +66,11 @@ export class CustomInputComponent implements ControlValueAccessor {
   }
 
   ngOnInit() {
-    // console.log(this.type);
-    // this.typeChange.emit('justin@email.com');
   }
+}
+
+export class OptionItem{
+  value:string;
+  viewValue:string;
+  image?: any;
 }
