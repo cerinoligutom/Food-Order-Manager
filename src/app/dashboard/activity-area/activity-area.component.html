@@ -7,6 +7,11 @@
             <div class="timestamp">{{today | date: 'medium'}}</div>
           </span>
         </p>
+
+        <button mat-button (click)="openDialog()">Click me!</button>
+        <div *ngFor="let transaction of transactions">
+          {{ transaction | json}}
+        </div>
       </div>
     </div>
   </div>
@@ -14,17 +19,12 @@
     <div class="row">
       <div class="col-md-12">
         <div style="display: block">
-          <canvas baseChart
-                  [data]="polarAreaChartData"
-                  [labels]="polarAreaChartLabels"
-                  [legend]="polarAreaLegend"
-                  [chartType]="polarAreaChartType"
-                  (chartHover)="chartHovered($event)"
-                  (chartClick)="chartClicked($event)"></canvas>
+          <canvas baseChart [data]="polarAreaChartData" [labels]="polarAreaChartLabels" [legend]="polarAreaLegend" [chartType]="polarAreaChartType"
+            (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
         </div>
       </div>
       <!-- <div *ngFor="let vendor of vendors | async"> -->
-        <div *ngFor="let vendor of vendors">
+      <div *ngFor="let vendor of vendors">
         <p class="name">{{vendor.name}} </p>
       </div>
     </div>

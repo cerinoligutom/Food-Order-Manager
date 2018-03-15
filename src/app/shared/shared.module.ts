@@ -100,11 +100,8 @@ import { ChartsModule } from 'ng2-charts';
     MatToolbarModule,
     MatTooltipModule,
 
-    FomComponent,
     CustomInputComponent,
-    CalendarComponent,
     ChartsModule
-    CustomInputComponent
   ],
   declarations: [
     CustomInputComponent

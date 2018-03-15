@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormlyFormOptions, FormlyFieldConfig } from '@ngx-formly/core';
 import { OptionItem } from '../../shared/custom-input/custom-input.component';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 

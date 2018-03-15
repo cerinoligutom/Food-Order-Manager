@@ -18,34 +18,29 @@ import { VendorService } from '../../core/services/vendor/vendor.service';
 export class ActivityAreaComponent implements OnInit {
   transactions: any[];
   today = Date.now();
-  
+
   // PolarArea
-  public polarAreaChartLabels:string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales', 'Telesales', 'Corporate Sales'];
-  public polarAreaChartData:number[] = [300, 500, 100, 40, 120];
-  public polarAreaLegend:boolean = true;
- 
-  public polarAreaChartType:string = 'polarArea';
- 
+  public polarAreaChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales', 'Telesales', 'Corporate Sales'];
+  public polarAreaChartData: number[] = [300, 500, 100, 40, 120];
+  public polarAreaLegend: boolean = true;
+
+  public polarAreaChartType: string = 'polarArea';
+
   // events
-  public chartClicked(e:any):void {
+  public chartClicked(e: any): void {
     console.log(e);
   }
- 
-  public chartHovered(e:any):void {
+
+  public chartHovered(e: any): void {
     console.log(e);
   }
-  
+
   // constructor(private apollo: Apollo) { }
-  constructor(private apollo: Apollo, private _vendorService: VendorService){
-
-  constructor(
-    public dialog: MatDialog
-  ) { }
-
+  constructor(private apollo: Apollo, private _vendorService: VendorService, public dialog: MatDialog) { }
   openDialog(): void {
     let dialogRef = this.dialog.open(TransactionFormComponent, {
       width: '300px',
-      data: { }
+      data: {}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -58,9 +53,4 @@ export class ActivityAreaComponent implements OnInit {
   ngOnInit() {
     this.transactions = [];
   }
-
-
-
-
-
 }
