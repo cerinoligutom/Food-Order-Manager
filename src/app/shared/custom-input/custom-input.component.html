@@ -1,5 +1,7 @@
-<mat-form-field>
-  <input matInput
+<mat-form-field *ngIf="type !=  'select'">
+
+  <input
+  matInput
   [(ngModel)]="value"
   [name]="name"
   #fomInput="ngModel"
@@ -18,3 +20,12 @@
     {{ name }} is <strong>required</strong>
   </mat-error>
 </mat-form-field>
+
+<mat-form-field *ngIf="type ==  'select'">
+    <mat-select  [(ngModel)]="value">
+      <mat-option *ngFor="let option of options" [value]="option.value">
+        {{ option.viewValue }}
+      </mat-option>
+    </mat-select>
+</mat-form-field>
+

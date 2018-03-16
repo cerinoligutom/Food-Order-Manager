@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Component } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
 
 import {
   MatAutocompleteModule,
@@ -40,17 +40,15 @@ import {
   MatError,
   MatFormFieldModule,
 } from '@angular/material';
-import { FomComponent } from './animated-input/animated-input.component';
 import { CustomInputComponent } from './custom-input/custom-input.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { CalendarModule } from 'angular-calendar';
-import { CalendarComponent } from './calendar/calendar.component';
 import { ChartsModule } from 'ng2-charts';
+
 
 @NgModule({
   imports: [
     FormsModule,
-    BrowserModule,
+    CommonModule,
     ChartsModule,
 
     MatButtonModule,
@@ -62,10 +60,9 @@ import { ChartsModule } from 'ng2-charts';
     MatFormFieldModule,
     MatInputModule,
     MatTooltipModule,
-    CalendarModule.forRoot()
+    MatSelectModule
   ],
   exports: [
-    BrowserAnimationsModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -103,15 +100,11 @@ import { ChartsModule } from 'ng2-charts';
     MatToolbarModule,
     MatTooltipModule,
 
-    FomComponent,
     CustomInputComponent,
-    CalendarComponent,
     ChartsModule
   ],
   declarations: [
-    FomComponent,
-    CustomInputComponent,
-    CalendarComponent
+    CustomInputComponent
   ]
 })
 export class SharedModule { }
