@@ -20,7 +20,7 @@ const routes: Routes = [
       },
       {
         path: 'transaction',
-        loadChildren: ()=> TransactionModule
+        loadChildren: () => TransactionModule
       }
     ]
   }

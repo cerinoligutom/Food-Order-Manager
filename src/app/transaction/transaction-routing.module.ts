@@ -4,7 +4,7 @@ import { TransactionFormComponent } from './transaction-form/transaction-form.co
 
 const routes: Routes = [
   {
-    path:'',
+    path: '',
     component: TransactionFormComponent
   }
 ];

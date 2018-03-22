@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { EmailValidator } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
 class RegisterForm {
-  username: string = '';
-  email: string = '';
-  password: string = '';
-  firstName: string = '';
-  middleName: string = '';
-  lastName: string = '';
+  username = '';
+  email = '';
+  password = '';
+  firstName = '';
+  middleName = '';
+  lastName = '';
 }
 
 
@@ -19,7 +20,7 @@ class RegisterForm {
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
 
   registerObservable: Subscription;
 
@@ -28,7 +29,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit(form: RegisterForm){
+  onSubmit(form: RegisterForm) {
     console.log(form);
 
     const httpOptions = {
@@ -41,7 +42,7 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.registerObservable.unsubscribe();
   }
 

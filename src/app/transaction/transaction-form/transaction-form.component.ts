@@ -14,19 +14,19 @@ export class TransactionFormComponent implements OnInit {
 
   form: any;
 
-  constructor(
-    public dialogRef: MatDialogRef<TransactionFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data:any
-  ) { }
-
-  ngOnInit() {
-  }
-
-  foods:OptionItem[] = [
+  foods: OptionItem[] = [
     {value: 'steak-0', viewValue: 'Steak'},
     {value: 'pizza-1', viewValue: 'Pizza'},
     {value: 'tacos-2', viewValue: 'Tacos'}
   ];
+
+  constructor(
+    public dialogRef: MatDialogRef<TransactionFormComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) { }
+
+  ngOnInit() {
+  }
 
   // onSubmit(form) {
   //   // let foods = data.map(x=> <OptionItem>{value: x.id, viewValue: x.name});
@@ -37,7 +37,7 @@ export class TransactionFormComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  createTransaction(form){
+  createTransaction(form) {
     return form;
   }
 

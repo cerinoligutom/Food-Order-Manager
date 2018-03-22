@@ -1,17 +1,17 @@
-export type Vendor = {
+export interface Vendor {
     id: number;
     name: string;
     image: string;
     contactNumbers: ContactNumber[];
-    products: Product[]
+    products: Product[];
 }
 
-export type ContactNumber = {
+export interface ContactNumber {
     vendor: Vendor;
     number: number;
 }
 
-export type Product = {
+export interface Product {
     id: number;
     vendor: Vendor;
     name: string;
@@ -20,6 +20,6 @@ export type Product = {
     isActive: boolean;
 }
 
-export type VendorQuery = {
+export interface VendorQuery {
     allVendors: Vendor[];
 }

@@ -2,14 +2,14 @@ import { Component, OnInit, Query } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
-import { TransactionFormComponent } from "../../transaction/transaction-form/transaction-form.component";
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { TransactionFormComponent } from '../../transaction/transaction-form/transaction-form.component';
 
 import gql from 'graphql-tag';
 
 import { Vendor, VendorQuery } from '../../types';
 import { VendorService } from '../../core/services/vendor/vendor.service';
-import { AddVendorInput } from '../../core/services/vendor/vendor.mutation'
+import { AddVendorInput } from '../../core/services/vendor/vendor.mutation';
 
 
 @Component({
@@ -24,9 +24,9 @@ export class ActivityAreaComponent implements OnInit {
   // PolarArea
   polarAreaChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales', 'Telesales', 'Corporate Sales'];
   polarAreaChartData: number[] = [300, 500, 100, 40, 120];
-  polarAreaLegend: boolean = true;
+  polarAreaLegend = true;
 
-  polarAreaChartType: string = 'polarArea';
+  polarAreaChartType = 'polarArea';
 
   // events
   chartClicked(e: any): void {
@@ -40,7 +40,7 @@ export class ActivityAreaComponent implements OnInit {
   // constructor(private apollo: Apollo) { }
   constructor(private apollo: Apollo, private _vendorService: VendorService, public dialog: MatDialog) { }
   openDialog(): void {
-    let dialogRef = this.dialog.open(TransactionFormComponent, {
+    const dialogRef = this.dialog.open(TransactionFormComponent, {
       width: '300px',
       data: {}
     });

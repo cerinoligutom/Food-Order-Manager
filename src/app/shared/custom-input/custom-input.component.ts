@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, Output,EventEmitter } from '@angular/core';
+import { Component, forwardRef, Input, Output, EventEmitter } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { EmailValidator } from '@angular/forms';
 
@@ -12,7 +12,7 @@ export const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 };
 
 @Component({
-  selector: 'custom-input',
+  selector: 'custom-input',  // tslint:disable-line
   templateUrl: './custom-input.component.html',
   styleUrls: ['./custom-input.component.scss'],
   providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
@@ -39,7 +39,7 @@ export class CustomInputComponent implements ControlValueAccessor {
 
   get value(): any {
     return this.innerValue;
-  };
+  }
 
   set value(v: any) {
     if (v !== this.innerValue) {
@@ -65,13 +65,10 @@ export class CustomInputComponent implements ControlValueAccessor {
   registerOnTouched(fn: any) {
     this.onTouchedCallback = fn;
   }
-
-  ngOnInit() {
-  }
 }
 
-export class OptionItem{
-  value:string;
-  viewValue:string;
+export class OptionItem {
+  value: string;
+  viewValue: string;
   image?: any;
 }

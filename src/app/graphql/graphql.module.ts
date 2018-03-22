@@ -1,6 +1,6 @@
-import { NgModule } from "@angular/core";
+import { NgModule } from '@angular/core';
 import { ApolloModule, Apollo } from 'apollo-angular';
-import { HttpClientModule, HttpHeaders } from "@angular/common/http";
+import { HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { setContext } from 'apollo-link-context';
@@ -22,7 +22,7 @@ export class GraphQlModule {
     constructor (
         apollo: Apollo,
         httpLink: HttpLink
-    ){
+    ) {
       const http = httpLink.create({ uri: 'http://graphql-dev.fom.zeferinix.com/' });
 
       const headers = new HttpHeaders({

@@ -1,6 +1,6 @@
 import { Vendor } from '../models';
 
-export type ContactNumber = {
+export interface ContactNumber {
     vendor: Vendor;
     number: number;
 }

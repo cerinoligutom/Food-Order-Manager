@@ -1,6 +1,6 @@
 import { Vendor } from '../models';
 
-export type Product = {
+export interface Product {
     id: number;
     vendor: Vendor;
     name: string;

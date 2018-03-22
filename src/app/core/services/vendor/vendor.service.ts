@@ -8,7 +8,7 @@ import {
 import {
   AddVendorInput,
   AddVendorMutation, AddVendorMutationResponse
-} from './vendor.mutation'
+} from './vendor.mutation';
 
 import gql from 'graphql-tag';
 
@@ -18,7 +18,7 @@ export class VendorService {
 
   constructor(private apollo: Apollo) { }
 
-  getVendors(){
+  getVendors() {
     return this.apollo.watchQuery<VendorQueryResponse>({
       query: VendorQuery
     })

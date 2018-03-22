@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';
 
 const AUTH_CONFIG = {
     BASE_URL: 'http://graphql-dev.fom.zeferinix.com/auth/'
-}
+};
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -20,20 +20,20 @@ export class AuthService {
   ) { }
 
 
-  login(form){
-    return this.http.post(AUTH_CONFIG.BASE_URL+'login', form, httpOptions)
-      .map((res:any) => res.token);
+  login(form) {
+    return this.http.post(AUTH_CONFIG.BASE_URL + 'login', form, httpOptions)
+      .map((res: any) => res.token);
   }
 
-  logout(){
+  logout() {
 
   }
 
-  isLoggedIn(){
-    return this.http.get(AUTH_CONFIG.BASE_URL+'isAuthenticated', httpOptions);
+  isLoggedIn() {
+    return this.http.get(AUTH_CONFIG.BASE_URL + 'isAuthenticated', httpOptions);
   }
 
-  isSuperAdmin(){
+  isSuperAdmin() {
     return true;
   }
 }

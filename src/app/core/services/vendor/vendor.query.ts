@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
-import { Vendor } from "../models";
+import { Vendor } from '../models';
 
-export type VendorQueryResponse = {
+export interface VendorQueryResponse {
     Vendors: Vendor[];
 }
 

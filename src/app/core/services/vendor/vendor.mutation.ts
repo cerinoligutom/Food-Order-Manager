@@ -1,14 +1,14 @@
 import gql from 'graphql-tag';
-import { Vendor } from "../models";
+import { Vendor } from '../models';
 
-export type AddVendorInput = {
+export interface AddVendorInput {
   name: String;
   image: String;
-};
+}
 
-export type AddVendorMutationResponse = {
+export interface AddVendorMutationResponse {
   Vendor: Vendor;
-};
+}
 
 export const AddVendorMutation = gql`
   mutation addVendor($addVendorInput: AddVendorInput) {

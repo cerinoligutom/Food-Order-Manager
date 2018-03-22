@@ -1,17 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { EmailValidator } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/map';
 import { AuthService } from '../core/services';
 
 
 class LoginForm {
-  username: string = '';
-  email: string = '';
-  password: string = '';
+  username = '';
+  email = '';
+  password = '';
 }
 
 
@@ -20,7 +20,7 @@ class LoginForm {
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   loginSubscription: Subscription;
 
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
 
       this.router.navigate(['/dashboard']);
 
-      //todo is authenticated
+      // todo is authenticated
       // this.authService.isLoggedIn().subscribe(res => {
       //   console.log(res);
       // })
