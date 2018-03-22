@@ -10,6 +10,8 @@ import { CoreModule } from './core/core.module';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { UserProfileModule } from './user-profile/user-profile.module';
+import { RegisterComponent } from './register/register.component';
 
 const ROUTES = [
   {
@@ -22,15 +24,24 @@ const ROUTES = [
     component: LoginComponent
   },
   {
+    path: 'register',
+    component: RegisterComponent
+  },
+  {
     path: 'dashboard',
     loadChildren: () => DashboardModule
+  },
+  {
+    path: 'user-profile',
+    loadChildren: () => UserProfileModule
   }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserAnimationsModule,

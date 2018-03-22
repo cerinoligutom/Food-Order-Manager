@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { EmailValidator } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Subscription } from 'rxjs';
+import 'rxjs/add/operator/map';
+import { AuthService } from '../core/services';
 
 
 class LoginForm {
@@ -10,23 +14,43 @@ class LoginForm {
   password: string = '';
 }
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  // dataModel: string = '';
-  constructor(private router: Router) { }
 
-  // form: LoginForm = new LoginForm();
+  loginSubscription: Subscription;
+
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private authService: AuthService
+  ) { }
+
 
   ngOnInit() {
   }
 
-  onSubmit(form: LoginForm){
-    console.log(form);
-    this.router.navigate(['/user-profile']);
+  onSubmit(form: LoginForm) {
+
+    this.authService.login(form).subscribe(user => {
+      this.router.navigate(['/dashboard']);
+
+      //todo is authenticated
+      // this.authService.isLoggedIn().subscribe(res => {
+      //   console.log(res);
+      // })
+    });
+
   }
+
+  ngOnDestroy() {
+    console.log('on destroy login screen');
+    // this.loginSubscription.unsubscribe();
+  }
+
 
 }

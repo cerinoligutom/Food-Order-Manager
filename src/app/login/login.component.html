@@ -3,10 +3,15 @@
     <div class="form-container">
       <img src="/assets/logo.png">
       <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm.value)">
-        <custom-input name="Email" [(ngModel)]="dataModel" type="email" placeholder="Email" email required> </custom-input>
-        <custom-input name="Password" [(ngModel)]="dataModel" type="password" placeholder="Password" required> </custom-input>
+        <custom-input name="username" [(ngModel)]="username" type="email" placeholder="Email" email required> </custom-input>
+        <custom-input name="password" [(ngModel)]="password" type="password" placeholder="Password" required> </custom-input>
         <button mat-button type="submit">Login</button>
       </form>
+    </div>
+    <div class="register-container">
+      <div>
+        <button mat-button>Register</button>
+      </div>
     </div>
   </div>
 </div>

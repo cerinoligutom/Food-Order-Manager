@@ -1,0 +1,21 @@
+<div class="container">
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm.value)">
+        <custom-input name="username" [(ngModel)]="username" type="text" placeholder="Username" required> </custom-input>
+        <custom-input name="email" [(ngModel)]="email" type="email" placeholder="Email" email required> </custom-input>
+        <custom-input name="password" [(ngModel)]="password" type="password" placeholder="Password" required> </custom-input>
+        <custom-input name="firstName" [(ngModel)]="firstName" type="text" placeholder="First Name" required> </custom-input>
+        <custom-input name="middleName" [(ngModel)]="middleName" type="text" placeholder="Middle Name"> </custom-input>
+        <custom-input name="lastName" [(ngModel)]="lastName" type="text" placeholder="Last Name" required> </custom-input>
+
+        <button mat-button type="submit">Register</button>
+      </form>
+</div>
+
+
+
+<!-- let username = req.body.username;
+let email = req.body.email;
+let password = req.body.password;
+let firstName = req.body.firstName;
+let middleName = req.body.middleName;
+let lastName = req.body.lastName; -->

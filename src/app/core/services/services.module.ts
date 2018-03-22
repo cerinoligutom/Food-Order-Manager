@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { VendorService } from './vendor/vendor.service';
+import { VendorService, AuthService } from './index';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   declarations: [],
-  providers: [VendorService]
+  providers: [
+    VendorService,
+    AuthService
+  ]
 })
 export class ServicesModule {
 }
