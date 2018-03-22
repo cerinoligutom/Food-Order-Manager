@@ -36,7 +36,9 @@ export class LoginComponent implements OnInit {
 
   onSubmit(form: LoginForm) {
 
-    this.authService.login(form).subscribe(user => {
+    this.loginSubscription = this.authService.login(form).subscribe(token => {
+      localStorage.setItem('token', token);
+
       this.router.navigate(['/dashboard']);
 
       //todo is authenticated
@@ -49,7 +51,7 @@ export class LoginComponent implements OnInit {
 
   ngOnDestroy() {
     console.log('on destroy login screen');
-    // this.loginSubscription.unsubscribe();
+    this.loginSubscription.unsubscribe();
   }
 
 

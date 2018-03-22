@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SharedModule } from './shared/shared.module';
 import { DashboardModule } from './dashboard/dashboard.module';
-import { GraphQlModule } from './shared/graphql.module';
+import { GraphQlModule } from './graphql/graphql.module';
 import { CoreModule } from './core/core.module';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -49,7 +49,6 @@ const ROUTES = [
     CoreModule,
     SharedModule,
     RouterModule.forRoot(ROUTES),
-
   ],
   providers: [],
   bootstrap: [AppComponent]

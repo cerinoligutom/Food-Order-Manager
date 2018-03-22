@@ -9,6 +9,14 @@
         </p>
 
         <button mat-button (click)="openDialog()">Click me!</button>
+        <button (click)="addJollibee()">Add Jollibee</button>
+
+        <div style="display: flex; flex-direction: column;">
+          <pre>{{ jollibee | json }}</pre>
+          <h1>{{ jollibee?.name }}</h1>
+          <img src="{{ jollibee?.image }}" alt="jollibee image">
+        </div>
+
         <div *ngFor="let transaction of transactions">
           {{ transaction | json}}
         </div>

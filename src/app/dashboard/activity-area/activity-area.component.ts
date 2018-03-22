@@ -9,6 +9,8 @@ import gql from 'graphql-tag';
 
 import { Vendor, VendorQuery } from '../../types';
 import { VendorService } from '../../core/services/vendor/vendor.service';
+import { AddVendorInput } from '../../core/services/vendor/vendor.mutation'
+
 
 @Component({
   selector: 'app-activity-area',
@@ -20,18 +22,18 @@ export class ActivityAreaComponent implements OnInit {
   today = Date.now();
 
   // PolarArea
-  public polarAreaChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales', 'Telesales', 'Corporate Sales'];
-  public polarAreaChartData: number[] = [300, 500, 100, 40, 120];
-  public polarAreaLegend: boolean = true;
+  polarAreaChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales', 'Telesales', 'Corporate Sales'];
+  polarAreaChartData: number[] = [300, 500, 100, 40, 120];
+  polarAreaLegend: boolean = true;
 
-  public polarAreaChartType: string = 'polarArea';
+  polarAreaChartType: string = 'polarArea';
 
   // events
-  public chartClicked(e: any): void {
+  chartClicked(e: any): void {
     console.log(e);
   }
 
-  public chartHovered(e: any): void {
+  chartHovered(e: any): void {
     console.log(e);
   }
 
@@ -54,8 +56,16 @@ export class ActivityAreaComponent implements OnInit {
     this.transactions = [];
   }
 
+  // addVendorInput: AddVendorInput = {
+  //   name: 'Jollibee',
+  //   image: 'http://business.inquirer.net/files/2012/01/Jollibee-logo-e1407489503307.jpg'
+  // }
 
-
-
-
+  // jollibee: any = {};
+  // addJollibee() {
+  //   this._vendorService.addVendor(this.addVendorInput).subscribe(vendor => {
+  //     console.log('vendor:', vendor);
+  //     this.jollibee = vendor;
+  //   });
+  // }
 }
