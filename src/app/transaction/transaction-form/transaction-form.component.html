@@ -1,7 +1,7 @@
 <form #transaction="ngForm">
   <custom-input name="Name" [(ngModel)]="name" type="text" placeholder="Name" required> </custom-input>
   <custom-input name="Description" [(ngModel)]="description" type="description" placeholder="Description"> </custom-input>
-  <custom-input name="Vendor" [(ngModel)]="select" [options]="foods" type="select" placeholder="Select Vendor"> </custom-input>
+  <custom-input name="Vendor" [(ngModel)]="select" [options]="vendors" type="select" placeholder="Select Vendor"> </custom-input>
 
   <button mat-button type="submit" [mat-dialog-close]="createTransaction(transaction.value)" cdkFocusInitial>Create</button>
   <button mat-button (click)="onNoClick()">No Thanks</button>

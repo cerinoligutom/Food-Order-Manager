@@ -24,7 +24,10 @@
 <mat-form-field *ngIf="type ==  'select'">
     <mat-select  [(ngModel)]="value">
       <mat-option *ngFor="let option of options" [value]="option.value">
-        {{ option.viewValue }}
+        <div style="display: flex; align-items: center;">
+          <img style="width: 2.5em; margin-right: 0.5em;" src="{{ option.image }}" />
+          {{ option.viewValue }}
+        </div>
       </mat-option>
     </mat-select>
 </mat-form-field>
