@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent } from './dashboard-home/dashboard-home.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { ActivityAreaComponent } from './activity-area/activity-area.component';
 import { TransactionModule } from '../transaction/transaction.module';
 

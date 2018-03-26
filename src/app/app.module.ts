@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -12,12 +12,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { UserProfileModule } from './user-profile/user-profile.module';
 import { RegisterComponent } from './register/register.component';
+import { HomeComponent } from './home/home/home.component';
+import { HomeModule } from './home/home.module';
 
-const ROUTES = [
+const ROUTES: Routes = [
   {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
+    path: '**',
+    redirectTo: '',
   },
   {
     path: 'login',
@@ -28,12 +29,9 @@ const ROUTES = [
     component: RegisterComponent
   },
   {
-    path: 'dashboard',
-    loadChildren: () => DashboardModule
-  },
-  {
-    path: 'user-profile',
-    loadChildren: () => UserProfileModule
+    path: '',
+    pathMatch: 'full',
+    loadChildren: () => HomeModule
   }
 ];
 
@@ -47,6 +45,7 @@ const ROUTES = [
     BrowserAnimationsModule,
     GraphQlModule,
     CoreModule,
+    HomeModule,
     SharedModule,
     RouterModule.forRoot(ROUTES),
   ],

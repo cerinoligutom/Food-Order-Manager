@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { SharedModule } from '../shared/shared.module';
-import { DashboardComponent } from './dashboard-home/dashboard-home.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { ActivityAreaComponent } from './activity-area/activity-area.component';
 import { TransactionModule } from '../transaction/transaction.module';
 @NgModule({
