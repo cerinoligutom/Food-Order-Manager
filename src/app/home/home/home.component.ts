@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   ];
 
   userRoutes = [
-    { name: 'My Profile', path: ['/user-profile'] }
+    { name: 'My Profile', path: ['/user'] }
   ];
 
   constructor(private userService: UserService) { }

@@ -25,7 +25,7 @@ const routes: Routes = [
         loadChildren: () => StatisticsModule
       },
       {
-        path: 'user-profile',
+        path: 'user',
         loadChildren: () => UserProfileModule
       },
       {
