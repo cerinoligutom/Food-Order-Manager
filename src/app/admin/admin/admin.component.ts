@@ -25,10 +25,7 @@ export class AdminComponent implements OnInit {
         name: x.name,
         image: x.image
       });
-      console.log('this.vendors', this.vendors);
-
     });
-
   }
 
   openAddVendorDialog(): void {
@@ -38,23 +35,20 @@ export class AdminComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // console.log('The dialog was closed');
-      // this.vendors.push(result);
-      this.vendorService.addVendor(result).subscribe(vendor => {
-
-        this.vendors.push(vendor);
-      });
+      if (result) {
+        this.vendorService.addVendor(result).subscribe(vendor => {
+          this.vendors.push(vendor);
+        });
+      }
     });
 
   }
 
   updateVendor(form: any) {
-    console.log(form);
     this.vendorService.editVendor(form).subscribe(vendor => {
       console.log('updated= ', vendor);
     });
   }
-
 }
 
 export class VendorAccordionItem {

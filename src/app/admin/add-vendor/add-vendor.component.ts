@@ -17,11 +17,11 @@ export class AddVendorComponent implements OnInit {
   }
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 
   createVendor(form: any) {
-    return form;
+    this.dialogRef.close(form);
   }
 
 }
