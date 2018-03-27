@@ -1,5 +1,4 @@
-<mat-form-field *ngIf="type !=  'select'">
-
+<mat-form-field *ngIf="type !== 'select' && type !== 'textarea'">
   <input
   matInput
   [(ngModel)]="value"
@@ -21,7 +20,7 @@
   </mat-error>
 </mat-form-field>
 
-<mat-form-field *ngIf="type ==  'select'">
+<mat-form-field *ngIf="type === 'select'">
     <mat-select  [(ngModel)]="value">
       <mat-option *ngFor="let option of options" [value]="option.value">
         <div style="display: flex; align-items: center;">
@@ -32,3 +31,6 @@
     </mat-select>
 </mat-form-field>
 
+<mat-form-field *ngIf="type === 'textarea'">
+  <textarea matInput [name]="name" [(ngModel)]="value" [placeholder]="placeholder"></textarea>
+</mat-form-field>

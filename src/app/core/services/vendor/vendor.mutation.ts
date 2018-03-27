@@ -27,7 +27,6 @@ export const AddVendorMutation = gql`
   }
 `;
 
-
 export const EditVendorMutation = gql`
   mutation editVendor($editVendorInput: EditVendorInput) {
     Vendor: editVendor(input: $editVendorInput) {

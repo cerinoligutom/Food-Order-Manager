@@ -9,6 +9,9 @@ import {
   GetCurrentLoggedInUserQuery,
   GetUserQuery
 } from './user.query';
+import {
+  EditUserInput, EditUserMutation
+} from './user.mutation';
 
 @Injectable()
 export class UserService {
@@ -40,6 +43,17 @@ export class UserService {
         id: id
       }
     }).valueChanges.pipe(
+      map(result => result.data.User)
+    );
+  }
+
+  updateUser(input: EditUserInput): Observable<User> {
+    return this.apollo.mutate<UserQueryResponse>({
+      mutation: EditUserMutation,
+      variables: {
+        editUserInput: input
+      }
+    }).pipe(
       map(result => result.data.User)
     );
   }
