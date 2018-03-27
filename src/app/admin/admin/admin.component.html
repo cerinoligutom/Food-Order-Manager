@@ -1,43 +1,51 @@
-<p>
-  admin works!
-</p>
-
 <mat-accordion>
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Vendors
-      </mat-panel-title>
-      <mat-panel-description>
-        Manage vendors
-      </mat-panel-description>
-    </mat-expansion-panel-header>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Vendors
+        </mat-panel-title>
+        <mat-panel-description>
+          Manage vendors
+        </mat-panel-description>
 
-    <mat-accordion *ngFor="let vendor of vendors">
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{ vendor.name }}
-          </mat-panel-title>
-          <mat-panel-description>
-            <!-- ADD last modified -->
-          </mat-panel-description>
-        </mat-expansion-panel-header>
+      </mat-expansion-panel-header>
+      <button mat-raised-button color="primary" (click)="openAddVendorDialog()">Add Vendor </button>
 
-        <mat-form-field>
-          <input name="id" [(ngModel)]="vendor.id" type="hidden">
-          <input matInput name="name" [(ngModel)]="vendor.name" placeholder="Name">
-        </mat-form-field>
+      <mat-accordion multi="false">
+        <mat-expansion-panel *ngFor="let vendor of vendors">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ vendor.name }}
+            </mat-panel-title>
+            <mat-panel-description>
+              <!-- ADD last modified -->
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="row">
+              <div class="col-md-4" style="margin-bottom:1em;">
+                  <mat-form-field>
+                    <input name="id" [(ngModel)]="vendor.id" type="hidden">
+                    <input matInput name="name" [(ngModel)]="vendor.name" placeholder="Name">
+                  </mat-form-field>
 
-        <mat-form-field>
-          <input matInput name="image" [(ngModel)]="vendor.image" placeholder="Image URL">
-        </mat-form-field>
+                  <mat-form-field>
+                    <input matInput name="image" [(ngModel)]="vendor.image" placeholder="Image URL">
+                  </mat-form-field>
 
-        <button mat-raised-button color="accent" (click)="updateVendor(vendor)">Update</button>
-        <button mat-raised-button color="warn">Remove</button>
-      </mat-expansion-panel>
-    </mat-accordion>
+                  <button mat-raised-button color="accent" (click)="updateVendor(vendor)">Update</button>
+                  <button mat-raised-button color="warn">Remove</button>
+                </div>
+                <div class="col-md-offset-1 col-md-5">
+                  <div class="vendor-image-container">
+                      <img [src]="vendor?.image || 'assets/vendor.png'" alt="">
+                  </div>
+                </div>
+          </div>
+            <!-- <div class="col-md-11" style="background: yellow; height: 5em;">
 
-    <button mat-raised-button color="primary" (click)="openAddVendorDialog()">Add Vendor </button>
-  </mat-expansion-panel>
-</mat-accordion>
+            </div> -->
+        </mat-expansion-panel>
+      </mat-accordion>
+
+    </mat-expansion-panel>
+  </mat-accordion>
