@@ -11,8 +11,9 @@ export class HomeComponent implements OnInit {
   user: User;
 
   routes = [
-    { name: 'Dashboard', path: ['/dashboard/activity']},
-    { name: 'Statistics', path: ['/statistics']}
+    { name: 'Dashboard', path: ['/dashboard/activity'] },
+    { name: 'Statistics', path: ['/statistics'] },
+    { name: 'Admin', path: ['/admin'] }
   ];
 
   constructor(private userService: UserService) { }

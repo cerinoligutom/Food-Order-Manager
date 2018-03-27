@@ -7,7 +7,10 @@ import {
 } from './vendor.query';
 import {
   AddVendorInput,
-  AddVendorMutation, AddVendorMutationResponse
+  AddVendorMutation,
+  VendorMutationResponse,
+  EditVendorInput,
+  EditVendorMutation
 } from './vendor.mutation';
 
 @Injectable()
@@ -18,21 +21,35 @@ export class VendorService {
     return this.apollo.watchQuery<VendorQueryResponse>({
       query: VendorQuery
     })
-    .valueChanges
-    .pipe(
-      map(result => result.data.Vendors)
-    );
+      .valueChanges
+      .pipe(
+        map(result => result.data.Vendors)
+      );
   }
 
   addVendor(input: AddVendorInput) {
-    return this.apollo.mutate<AddVendorMutationResponse>({
+    return this.apollo.mutate<VendorMutationResponse>({
       mutation: AddVendorMutation,
       variables: {
         addVendorInput: input
       }
     })
-    .pipe(
-      map(result => result.data.Vendor)
-    );
+      .pipe(
+        map(result => result.data.Vendor)
+      );
   }
+
+  editVendor(input: EditVendorInput) {
+    return this.apollo.mutate<VendorMutationResponse>({
+      mutation: EditVendorMutation,
+      variables: {
+        editVendorInput: input
+      }
+    })
+      .pipe(
+        map(result => result.data.Vendor)
+      );
+  }
+
+
 }

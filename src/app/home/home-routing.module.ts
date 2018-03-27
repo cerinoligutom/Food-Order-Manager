@@ -4,6 +4,7 @@ import { DashboardModule } from '../dashboard/dashboard.module';
 import { StatisticsModule } from '../statistics/statistics.module';
 import { UserProfileModule } from '../user-profile/user-profile.module';
 import { HomeComponent } from './home/home.component';
+import { AdminModule } from '../admin/admin.module';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
       {
         path: 'user-profile',
         loadChildren: () => UserProfileModule
+      },
+      {
+        path: 'admin',
+        loadChildren: () => AdminModule
       }
     ]
   }

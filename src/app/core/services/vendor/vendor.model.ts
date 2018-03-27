@@ -1,7 +1,7 @@
 import { ContactNumber, Product } from '../models';
 
 export interface Vendor {
-    id: number;
+    id: string;
     name: string;
     image: string;
     contactNumbers: ContactNumber[];
