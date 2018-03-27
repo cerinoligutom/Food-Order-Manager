@@ -5,11 +5,16 @@
     </button>
     <h1 class="app-name">Food Order Manager</h1>
     <span class="fill-remaining-space"></span>
-    <div class="user-info">
+    <div class="user-info" [matMenuTriggerFor]="appMenu">
+      <mat-menu #appMenu="matMenu" [overlapTrigger]="false" xPosition="before">
+        <button mat-menu-item *ngFor="let route of userRoutes" [routerLink]="route.path">{{ route.name }}</button>
+        <button mat-menu-item (click)="logout()">Logout</button>
+      </mat-menu>
+
       <span class="name">Hello, {{ user?.username }}</span>
 
       <div class="img-container">
-        <img class="image" [src]="user?.image" />
+        <img class="image" [src]="user?.image || 'assets/user.png'" />
       </div>
     </div>
   </mat-toolbar>
