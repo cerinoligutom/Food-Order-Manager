@@ -5,7 +5,9 @@ import { Observable } from 'rxjs/Observable';
 
 import { User } from '../models';
 import {
-  GetCurrentLoggedInUserQuery, GetCurrentLoggedInUserQueryResponse
+  UserQueryResponse,
+  GetCurrentLoggedInUserQuery,
+  GetUserQuery
 } from './user.query';
 
 @Injectable()
@@ -18,7 +20,7 @@ export class UserService {
 
   getCurrentLoggedInUser(): Observable<User> {
     if (!this.currentUser) {
-      return this.apollo.watchQuery<GetCurrentLoggedInUserQueryResponse>({
+      return this.apollo.watchQuery<UserQueryResponse>({
         query: GetCurrentLoggedInUserQuery
       }).valueChanges.pipe(
         map(result => result.data.User)
@@ -29,5 +31,16 @@ export class UserService {
         observer.complete();
       });
     }
+  }
+
+  getUser(id: string): Observable<User> {
+    return this.apollo.watchQuery<UserQueryResponse>({
+      query: GetUserQuery,
+      variables: {
+        id: id
+      }
+    }).valueChanges.pipe(
+      map(result => result.data.User)
+    );
   }
 }

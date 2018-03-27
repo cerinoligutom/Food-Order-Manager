@@ -5,6 +5,15 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'profile',
+    pathMatch: 'full'
+  },
+  {
+    path: 'profile',
+    component: UserProfileComponent
+  },
+  {
+    path: 'profile/:id',
     component: UserProfileComponent
   }
 ];
