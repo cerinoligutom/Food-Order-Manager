@@ -16,12 +16,21 @@ export class HomeComponent implements OnInit {
     { name: 'Admin', path: ['/admin'] }
   ];
 
+  userRoutes = [
+    { name: 'My Profile', path: ['/user-profile'] }
+  ];
+
   constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.userService.getCurrentLoggedInUser().subscribe(user => {
       this.user = user;
     });
+  }
+
+  logout() {
+    // TODO
+    alert('logout');
   }
 
 }

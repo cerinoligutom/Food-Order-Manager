@@ -16,10 +16,10 @@ import { HomeComponent } from './home/home/home.component';
 import { HomeModule } from './home/home.module';
 
 const ROUTES: Routes = [
-  {
-    path: '**',
-    redirectTo: '',
-  },
+  // {
+  //   path: '**',
+  //   redirectTo: '',
+  // },
   {
     path: 'login',
     component: LoginComponent
