@@ -10,12 +10,8 @@ import {
   AddVendorMutation, AddVendorMutationResponse
 } from './vendor.mutation';
 
-import gql from 'graphql-tag';
-
 @Injectable()
 export class VendorService {
-  vendors: Vendor[];
-
   constructor(private apollo: Apollo) { }
 
   getVendors() {

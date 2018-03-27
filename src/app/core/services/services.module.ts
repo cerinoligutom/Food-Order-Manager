@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { VendorService, AuthService } from './index';
+import { VendorService, AuthService, UserService } from './index';
 
 @NgModule({
   imports: [
@@ -9,7 +9,8 @@ import { VendorService, AuthService } from './index';
   declarations: [],
   providers: [
     VendorService,
-    AuthService
+    AuthService,
+    UserService
   ]
 })
 export class ServicesModule {

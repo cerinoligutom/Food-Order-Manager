@@ -7,10 +7,8 @@ import { TransactionFormComponent } from '../../transaction/transaction-form/tra
 
 import gql from 'graphql-tag';
 
-import { Vendor, VendorQuery } from '../../types';
 import { VendorService } from '../../core/services/vendor/vendor.service';
 import { AddVendorInput } from '../../core/services/vendor/vendor.mutation';
-
 
 @Component({
   selector: 'app-activity-area',

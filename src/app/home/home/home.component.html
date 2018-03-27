@@ -4,6 +4,14 @@
       <mat-icon>menu</mat-icon>
     </button>
     <h1 class="app-name">Food Order Manager</h1>
+    <span class="fill-remaining-space"></span>
+    <div class="user-info">
+      <span class="name">Hello, {{ user?.username }}</span>
+
+      <div class="img-container">
+        <img class="image" [src]="user?.image" />
+      </div>
+    </div>
   </mat-toolbar>
 
   <mat-sidenav-container class="sidenav-container">
