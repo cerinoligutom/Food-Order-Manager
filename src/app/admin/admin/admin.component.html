@@ -12,7 +12,7 @@
       <button mat-raised-button color="primary" (click)="openAddVendorDialog()">Add Vendor </button>
 
       <mat-accordion multi="false">
-        <mat-expansion-panel *ngFor="let vendor of vendors">
+        <mat-expansion-panel *ngFor="let vendor of vendors" (opened)="onVendorExpand(vendor.id)">
           <mat-expansion-panel-header>
             <mat-panel-title>
               {{ vendor.name }}
@@ -41,9 +41,10 @@
                   </div>
                 </div>
           </div>
-            <!-- <div class="col-md-11" style="background: yellow; height: 5em;">
-
-            </div> -->
+          <mat-divider></mat-divider>
+            <div class="col-md-11">
+                <button mat-raised-button color="primary" (click)="openAddProductDialog(vendor.id)">Add Product </button>
+            </div>
         </mat-expansion-panel>
       </mat-accordion>
 

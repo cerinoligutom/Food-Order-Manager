@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { VendorService } from '../../core/services';
 import { MatDialog } from '@angular/material';
 import { AddVendorComponent } from '../add-vendor/add-vendor.component';
+import { AddProductComponent } from '../add-product/add-product.component';
+import { ProductService } from '../../core/services/product/product.service';
 
 @Component({
   selector: 'app-admin',
@@ -11,10 +13,12 @@ import { AddVendorComponent } from '../add-vendor/add-vendor.component';
 
 export class AdminComponent implements OnInit {
 
-  vendors: VendorAccordionItem[];
+  vendors: VendorAccordionItem[] = [];
+  products: VendorAccordionItem[] = [];
 
   constructor(
     private vendorService: VendorService,
+    private productService: ProductService,
     public dialog: MatDialog
   ) { }
 
@@ -26,6 +30,7 @@ export class AdminComponent implements OnInit {
         image: x.image
       });
     });
+
   }
 
   openAddVendorDialog(): void {
@@ -42,6 +47,31 @@ export class AdminComponent implements OnInit {
       }
     });
 
+  }
+
+  onVendorExpand(vendorId){
+    this.productService.getVendorProducts(vendorId).subscribe(result => {
+      console.log('on vendor open',result);
+    })
+  }
+
+  openAddProductDialog(vendorId):void{
+    console.log('vendor id', vendorId);
+    const dialogRef = this.dialog.open(AddProductComponent, {
+      width: '300px',
+      data: {
+        vendorId: vendorId
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.productService.addProduct(result).subscribe(vendor => {
+          console.log('create', vendor);
+          this.products.push(vendor);
+        });
+      }
+    });
   }
 
   updateVendor(form: any) {

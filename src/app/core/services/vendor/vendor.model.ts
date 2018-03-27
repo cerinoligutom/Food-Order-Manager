@@ -5,5 +5,8 @@ export interface Vendor {
     name: string;
     image: string;
     contactNumbers: ContactNumber[];
-    products: Product[];
+}
+
+export interface VendorProducts{
+  Products: Product[];
 }

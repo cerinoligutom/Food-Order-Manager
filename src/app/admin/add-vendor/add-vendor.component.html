@@ -1,6 +1,6 @@
 <form #addVendorForm="ngForm">
-  <custom-input name="name" [(ngModel)]="name" type="text" placeholder="Vendor Name" requried></custom-input>
+  <custom-input name="name" [(ngModel)]="name" type="text" placeholder="Vendor Name" required></custom-input>
   <custom-input name="image" [(ngModel)]="image" type="text" placeholder="Image URL"></custom-input>
-  <button mat-button type="submit" (click)="createVendor(addVendorForm.value)" cdkFocusInitial>Create</button>
+  <button mat-button type="submit" (click)="onCreateVendor(addVendorForm.value)" cdkFocusInitial>Create</button>
   <button mat-button (click)="onNoClick()">Cancel</button>
 </form>

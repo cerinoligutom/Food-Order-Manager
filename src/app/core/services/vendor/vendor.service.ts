@@ -20,11 +20,9 @@ export class VendorService {
   getVendors() {
     return this.apollo.watchQuery<VendorQueryResponse>({
       query: VendorQuery
-    })
-      .valueChanges
-      .pipe(
-        map(result => result.data.Vendors)
-      );
+    }).valueChanges.pipe(
+      map(result => result.data.Vendors)
+    );
   }
 
   addVendor(input: AddVendorInput) {
@@ -33,10 +31,9 @@ export class VendorService {
       variables: {
         addVendorInput: input
       }
-    })
-      .pipe(
-        map(result => result.data.Vendor)
-      );
+    }).pipe(
+      map(result => result.data.Vendor)
+    );
   }
 
   editVendor(input: EditVendorInput) {
@@ -45,10 +42,9 @@ export class VendorService {
       variables: {
         editVendorInput: input
       }
-    })
-      .pipe(
-        map(result => result.data.Vendor)
-      );
+    }).pipe(
+      map(result => result.data.Vendor)
+    );
   }
 
 
