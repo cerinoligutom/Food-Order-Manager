@@ -2,7 +2,14 @@ import { Injectable } from "@angular/core";
 import { Apollo } from "apollo-angular";
 import { VendorProductsQueryResponse, getVendorProductsQuery } from "./product.query";
 import { map } from "rxjs/operators";
-import { AddProductInput, ProductMutationResponse, AddProductMutation, EditProductInput, EditProductMutation, DeleteProductMutation } from "./product.mutation";
+import {
+  AddProductInput,
+  ProductMutationResponse,
+  AddProductMutation,
+  EditProductInput,
+  EditProductMutation,
+  DeleteProductMutation
+} from "./product.mutation";
 
 
 @Injectable()

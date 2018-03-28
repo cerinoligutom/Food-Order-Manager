@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { VendorService, AuthService, UserService } from './index';
-import { ProductService } from './product/product.service';
+import {
+  VendorService,
+  AuthService,
+  UserService,
+  TransactionService,
+  ProductService
+} from './index';
 
 @NgModule({
   imports: [
@@ -12,7 +17,8 @@ import { ProductService } from './product/product.service';
     VendorService,
     AuthService,
     UserService,
-    ProductService
+    ProductService,
+    TransactionService
   ]
 })
 export class ServicesModule {
