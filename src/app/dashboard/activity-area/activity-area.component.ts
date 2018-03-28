@@ -25,17 +25,19 @@ export class ActivityAreaComponent extends BaseComponent implements OnInit {
     private userService: UserService,
     private transactionService: TransactionService,
     public dialog: MatDialog
-  ) { super();  }
+  ) { super(); }
   openDialog(): void {
     const dialogRef = this.dialog.open(TransactionFormComponent, {
       width: '300px',
       data: {}
     });
 
+
+
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.transactionService.addTransaction(result).subscribe(transaction => {
-          this.transactions.unshift(transaction);
+          this.transactions = [transaction, ...this.transactions];
         })
       }
     });
@@ -43,11 +45,14 @@ export class ActivityAreaComponent extends BaseComponent implements OnInit {
 
   ngOnInit() {
     this.getTransactions();
+
   }
 
   getTransactions() {
     this.transactionService.getTransactions().subscribe(transactions => {
       this.transactions = transactions;
-    };
+      console.log(this.transactions);
+
+    });
   }
 }
