@@ -32,22 +32,17 @@
               <input matInput name="image" [(ngModel)]="vendor.image" placeholder="Image URL">
             </mat-form-field>
 
-                  <button mat-raised-button color="accent" (click)="updateVendor(vendor)">Update</button>
-                  <button mat-raised-button color="warn">Remove</button>
-                </div>
-                <div class="col-md-offset-1 col-md-5">
-                  <div class="vendor-image-container">
-                      <img [src]="vendor?.image || defaultVendorImage">
-                  </div>
-                </div>
+            <button mat-raised-button color="accent" (click)="updateVendor(vendor)">Update</button>
+            <button mat-raised-button color="warn">Remove</button>
           </div>
           <div class="col-md-offset-1 col-md-5">
             <div class="vendor-image-container">
-              <img [src]="vendor?.image || 'assets/vendor.png'" alt="">
+              <img [src]="vendor?.image || defaultVendorImage">
             </div>
           </div>
         </div>
         <mat-divider></mat-divider>
+
         <div class="col-md-11">
           <button mat-raised-button color="primary" (click)="openAddProductDialog(vendor.id)">Add Product </button>
 
