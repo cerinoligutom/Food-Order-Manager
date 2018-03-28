@@ -8,6 +8,14 @@ export interface AddProductInput{
   image: string;
 }
 
+export interface EditProductInput{
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+  is_active: boolean;
+}
+
 export interface ProductMutationResponse{
   Product: Product;
 }
@@ -20,6 +28,27 @@ export const AddProductMutation = gql`
       price
       image
       is_active
+      Vendor {
+        id
+      }
     }
+  }
+`;
+
+export const EditProductMutation = gql`
+  mutation editProduct($editProductInput: EditProductInput) {
+    Product: editProduct(input: $editProductInput) {
+      id
+      name
+      price
+      image
+      is_active
+    }
+  }
+`;
+
+export const DeleteProductMutation = gql`
+  mutation deleteProduct($productId: ID!) {
+    isDeletedProduct: deleteProduct(id: $productId)
   }
 `;
