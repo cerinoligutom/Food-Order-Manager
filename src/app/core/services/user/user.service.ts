@@ -18,7 +18,10 @@ export class UserService {
   currentUser: User;
 
   constructor(private apollo: Apollo) {
-    this.getCurrentLoggedInUser().subscribe(user => this.currentUser = user);
+    this.getCurrentLoggedInUser().subscribe(user => {
+      this.currentUser = user
+      localStorage.setItem('user', JSON.stringify(user));
+    });
   }
 
   getCurrentLoggedInUser(): Observable<User> {
