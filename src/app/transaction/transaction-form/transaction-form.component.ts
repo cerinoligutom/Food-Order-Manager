@@ -5,6 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Vendor } from '../../core/services/models';
 import { VendorService } from '../../core/services';
 import { BaseComponent } from '@app/components';
+import { AddTransactionInput } from '../../core/services/transaction/transaction.mutation';
 
 @Component({
   selector: 'app-transaction-form',
@@ -40,8 +41,12 @@ export class TransactionFormComponent extends BaseComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  createTransaction(form) {
-    return form;
+  onCreateTransaction(form: AddTransactionInput) {
+    form.host_id = this.currentLoggedInUser.id;
+    if (!form.delivery_fee) {
+      form.delivery_fee = 0;
+    }
+    this.dialogRef.close(form);
   }
 
 }

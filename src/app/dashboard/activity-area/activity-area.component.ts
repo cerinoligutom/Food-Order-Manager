@@ -6,6 +6,10 @@ import { BaseComponent } from '@app/components';
 
 import gql from 'graphql-tag';
 
+import { AddTransactionInput } from '../../core/services/transaction/transaction.mutation';
+import { Apollo } from 'apollo-angular';
+import { VendorService, UserService, TransactionService } from '@app/services';
+
 @Component({
   selector: 'app-activity-area',
   templateUrl: './activity-area.component.html',
@@ -14,8 +18,14 @@ import gql from 'graphql-tag';
 export class ActivityAreaComponent extends BaseComponent implements OnInit {
   transactions: any[];
 
-  constructor(public dialog: MatDialog) { super(); }
-
+  // constructor(private apollo: Apollo) { }
+  constructor(
+    private apollo: Apollo,
+    private vendorService: VendorService,
+    private userService: UserService,
+    private transactionService: TransactionService,
+    public dialog: MatDialog
+  ) { super();  }
   openDialog(): void {
     const dialogRef = this.dialog.open(TransactionFormComponent, {
       width: '300px',
@@ -23,56 +33,21 @@ export class ActivityAreaComponent extends BaseComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.transactions.push(result);
-      console.log('transaction result', result);
+      if (result) {
+        this.transactionService.addTransaction(result).subscribe(transaction => {
+          this.transactions.unshift(transaction);
+        })
+      }
     });
   }
 
   ngOnInit() {
-    this.transactions = [
-      {
-        id: '1',
-        Host: {
-          id: '1',
-          username: 'zeferinix',
-        },
-        Vendor: {
-          id: '1',
-          name: 'Jollibee'
-        },
-        description: 'The big brown fox',
-        created_at: new Date(),
-        delivery_fee: 40.0
-      },
-      {
-        id: '1',
-        Host: {
-          id: '1',
-          username: 'zeferinix',
-        },
-        Vendor: {
-          id: '1',
-          name: 'Jollibee'
-        },
-        description: 'The big brown fox',
-        created_at: new Date(),
-        delivery_fee: 40.0
-      },
-      {
-        id: '1',
-        Host: {
-          id: '1',
-          username: 'zeferinix',
-        },
-        Vendor: {
-          id: '1',
-          name: 'Jollibee'
-        },
-        description: 'The big brown fox',
-        created_at: new Date(),
-        delivery_fee: 40.0
-      }
-    ];
+    this.getTransactions();
+  }
+
+  getTransactions() {
+    this.transactionService.getTransactions().subscribe(transactions => {
+      this.transactions = transactions;
+    };
   }
 }
