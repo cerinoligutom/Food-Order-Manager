@@ -43,14 +43,17 @@ import {
 import { CustomInputComponent } from './custom-input/custom-input.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { ChartsModule } from 'ng2-charts';
-
+import { TimelineComponent } from './timeline/timeline.component';
+import { TimelineItemComponent } from './timeline-item/timeline-item.component';
 
 @NgModule({
   imports: [
+    // Angular
     FormsModule,
     CommonModule,
     ChartsModule,
 
+    // Material Design
     MatButtonModule,
     MatMenuModule,
     MatToolbarModule,
@@ -60,13 +63,15 @@ import { ChartsModule } from 'ng2-charts';
     MatFormFieldModule,
     MatInputModule,
     MatTooltipModule,
-    MatSelectModule
+    MatSelectModule,
   ],
   exports: [
+    // Angular
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
 
+    // Material Design
     MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,
@@ -100,11 +105,18 @@ import { ChartsModule } from 'ng2-charts';
     MatToolbarModule,
     MatTooltipModule,
 
+    // 3rd party
+    ChartsModule,
+
+    // App
     CustomInputComponent,
-    ChartsModule
+    TimelineComponent,
+    TimelineItemComponent
   ],
   declarations: [
-    CustomInputComponent
+    CustomInputComponent,
+    TimelineComponent,
+    TimelineItemComponent
   ]
 })
 export class SharedModule { }

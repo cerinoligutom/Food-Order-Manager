@@ -1,0 +1,43 @@
+@import 'variables';
+
+.timeline-item {
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    top: 22px;
+    left: -52px;
+    background-color: $blue;
+    border: 6px solid $light-grey;
+    box-shadow: 0 0 0 2px $blue;
+  }
+
+  .arrow_box {
+    position: relative;
+  }
+  .arrow_box:after, .arrow_box:before {
+    right: 100%;
+    top: 55px;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .arrow_box:after {
+    border-right-color: $white;
+    border-width: 12px;
+    margin-top: -30px;
+  }
+  .arrow_box:before {
+    border-right-color: rgba(0,0,0,.08);
+    border-width: 14px;
+    margin-top: -32px;
+  }
+}
