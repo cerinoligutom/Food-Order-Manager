@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "src",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -14,6 +15,11 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@app/models": [ "app/core/services/models" ],
+      "@app/services": [ "app/core/services" ],
+      "@app/components": [ "app/shared/base-component/base.component" ]
+    }
   }
 }

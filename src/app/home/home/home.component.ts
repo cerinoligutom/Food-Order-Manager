@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../core/services';
 import { User } from '../../core/services/models';
+import { BaseComponent } from '@app/components';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent extends BaseComponent implements OnInit {
   user: User;
 
   routes = [
@@ -20,7 +21,7 @@ export class HomeComponent implements OnInit {
     { name: 'My Profile', path: ['/user'] }
   ];
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) { super(); }
 
   ngOnInit() {
     this.userService.getCurrentLoggedInUser().subscribe(user => {

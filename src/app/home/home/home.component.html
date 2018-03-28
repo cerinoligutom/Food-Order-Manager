@@ -14,15 +14,15 @@
       <span class="name">Hello, {{ user?.username }}</span>
 
       <div class="img-container">
-        <img class="image" [src]="user?.image || 'assets/user.png'" />
+        <img class="image" [src]="user?.image || defaultUserImage" />
       </div>
     </div>
   </mat-toolbar>
 
   <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #sidenav mode="side" opened="true">
+    <mat-sidenav #sidenav mode="over">
       <mat-nav-list>
-        <a mat-list-item [routerLink]="route.path" routerLinkActive='active' *ngFor="let route of routes">{{route.name}}</a>
+        <a class="sidenav-item" (click)="sidenav.close()" mat-list-item [routerLink]="route.path" routerLinkActive='active' *ngFor="let route of routes">{{route.name}}</a>
       </mat-nav-list>
     </mat-sidenav>
 

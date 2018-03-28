@@ -1,42 +1,21 @@
 import { Component, OnInit, Query } from '@angular/core';
-import { Apollo } from 'apollo-angular';
-import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { TransactionFormComponent } from '../../transaction/transaction-form/transaction-form.component';
+import { BaseComponent } from '@app/components';
 
 import gql from 'graphql-tag';
-
-import { VendorService } from '../../core/services/vendor/vendor.service';
-import { AddVendorInput } from '../../core/services/vendor/vendor.mutation';
 
 @Component({
   selector: 'app-activity-area',
   templateUrl: './activity-area.component.html',
   styleUrls: ['./activity-area.component.scss']
 })
-export class ActivityAreaComponent implements OnInit {
+export class ActivityAreaComponent extends BaseComponent implements OnInit {
   transactions: any[];
-  today = Date.now();
 
-  // PolarArea
-  polarAreaChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales', 'Telesales', 'Corporate Sales'];
-  polarAreaChartData: number[] = [300, 500, 100, 40, 120];
-  polarAreaLegend = true;
+  constructor(public dialog: MatDialog) { super(); }
 
-  polarAreaChartType = 'polarArea';
-
-  // events
-  chartClicked(e: any): void {
-    console.log(e);
-  }
-
-  chartHovered(e: any): void {
-    console.log(e);
-  }
-
-  // constructor(private apollo: Apollo) { }
-  constructor(private apollo: Apollo, private _vendorService: VendorService, public dialog: MatDialog) { }
   openDialog(): void {
     const dialogRef = this.dialog.open(TransactionFormComponent, {
       width: '300px',
@@ -51,19 +30,49 @@ export class ActivityAreaComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.transactions = [];
+    this.transactions = [
+      {
+        id: '1',
+        Host: {
+          id: '1',
+          username: 'zeferinix',
+        },
+        Vendor: {
+          id: '1',
+          name: 'Jollibee'
+        },
+        description: 'The big brown fox',
+        created_at: new Date(),
+        delivery_fee: 40.0
+      },
+      {
+        id: '1',
+        Host: {
+          id: '1',
+          username: 'zeferinix',
+        },
+        Vendor: {
+          id: '1',
+          name: 'Jollibee'
+        },
+        description: 'The big brown fox',
+        created_at: new Date(),
+        delivery_fee: 40.0
+      },
+      {
+        id: '1',
+        Host: {
+          id: '1',
+          username: 'zeferinix',
+        },
+        Vendor: {
+          id: '1',
+          name: 'Jollibee'
+        },
+        description: 'The big brown fox',
+        created_at: new Date(),
+        delivery_fee: 40.0
+      }
+    ];
   }
-
-  // addVendorInput: AddVendorInput = {
-  //   name: 'Jollibee',
-  //   image: 'http://business.inquirer.net/files/2012/01/Jollibee-logo-e1407489503307.jpg'
-  // }
-
-  // jollibee: any = {};
-  // addJollibee() {
-  //   this._vendorService.addVendor(this.addVendorInput).subscribe(vendor => {
-  //     console.log('vendor:', vendor);
-  //     this.jollibee = vendor;
-  //   });
-  // }
 }

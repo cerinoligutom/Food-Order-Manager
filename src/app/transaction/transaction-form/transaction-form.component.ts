@@ -4,6 +4,7 @@ import { OptionItem } from '../../shared/custom-input/custom-input.component';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Vendor } from '../../core/services/models';
 import { VendorService } from '../../core/services';
+import { BaseComponent } from '@app/components';
 
 @Component({
   selector: 'app-transaction-form',
@@ -12,7 +13,7 @@ import { VendorService } from '../../core/services';
 })
 
 
-export class TransactionFormComponent implements OnInit {
+export class TransactionFormComponent extends BaseComponent implements OnInit {
 
   form: any;
 
@@ -23,7 +24,7 @@ export class TransactionFormComponent implements OnInit {
     private vendorService: VendorService,
     public dialogRef: MatDialogRef<TransactionFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
+  ) { super(); }
 
   ngOnInit() {
     this.vendorService.getVendors().subscribe(vendor => {

@@ -5,6 +5,7 @@ import { AddVendorComponent } from '../add-vendor/add-vendor.component';
 import { AddProductComponent } from '../add-product/add-product.component';
 import { ProductService } from '../../core/services/product/product.service';
 import { ManageProductComponent } from '../manage-product/manage-product.component';
+import { BaseComponent } from '@app/components';
 
 @Component({
   selector: 'app-admin',
@@ -12,7 +13,7 @@ import { ManageProductComponent } from '../manage-product/manage-product.compone
   styleUrls: ['./admin.component.scss']
 })
 
-export class AdminComponent implements OnInit {
+export class AdminComponent extends BaseComponent implements OnInit {
 
   vendors: VendorAccordionItem[] = [];
   dataSource: MatTableDataSource<ProductTableElement>;
@@ -22,7 +23,7 @@ export class AdminComponent implements OnInit {
     private vendorService: VendorService,
     private productService: ProductService,
     public dialog: MatDialog
-  ) { }
+  ) { super(); }
 
   ngOnInit() {
     this.vendorService.getVendors().subscribe(vendor => {

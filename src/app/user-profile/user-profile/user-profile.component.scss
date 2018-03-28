@@ -2,11 +2,19 @@
   border: 1px solid #e8e8e8;
 }
 
-.demo-tab-content {
-  padding: 16px;
+.tab-content {
+  padding: 1em;
+
+  &.edit-profile-form {
+    padding: 1.5em;
+  }
 }
 
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
+.user-info-section {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    font-weight: bold;
+  }
 }

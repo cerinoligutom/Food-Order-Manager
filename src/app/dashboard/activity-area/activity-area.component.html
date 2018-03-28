@@ -1,39 +1,15 @@
-<div class="row" style="min-height:500px">
-  <div class="col-md-6 activity">
-    <div class="card">
-      <div class="timeline">
-        <p *ngFor="let content of fillerContent" class="timeline-circle">
-          <span>{{content}}
-            <div class="timestamp">{{today | date: 'medium'}}</div>
-          </span>
-        </p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 temporary">
+      <button mat-button (click)="openDialog()">Click me!</button>
 
-        <button mat-button (click)="openDialog()">Click me!</button>
-        <button (click)="addJollibee()">Add Jollibee</button>
+      <div class="row">
+          <div class="col-md-6 temporary">
+              <app-timeline [timelineItems]="transactions"></app-timeline>
+          </div>
+          <div class="col-md-6 temporary">
 
-        <div style="display: flex; flex-direction: column;">
-          <pre>{{ jollibee | json }}</pre>
-          <h1>{{ jollibee?.name }}</h1>
-          <img src="{{ jollibee?.image }}" alt="jollibee image">
-        </div>
-
-        <div *ngFor="let transaction of transactions">
-          {{ transaction | json}}
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-6 statistics">
-    <div class="row">
-      <div class="col-md-12">
-        <div style="display: block">
-          <canvas baseChart [data]="polarAreaChartData" [labels]="polarAreaChartLabels" [legend]="polarAreaLegend" [chartType]="polarAreaChartType"
-            (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
-        </div>
-      </div>
-      <!-- <div *ngFor="let vendor of vendors | async"> -->
-      <div *ngFor="let vendor of vendors">
-        <p class="name">{{vendor.name}} </p>
+          </div>
       </div>
     </div>
   </div>
