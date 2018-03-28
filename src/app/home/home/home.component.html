@@ -14,7 +14,7 @@
       <span class="name">Hello, {{ user?.username }}</span>
 
       <div class="img-container">
-        <img class="image" [src]="user?.image || 'assets/user.png'" />
+        <img class="image" [src]="user?.image || defaultUserImage" />
       </div>
     </div>
   </mat-toolbar>

@@ -3,7 +3,6 @@
     <div class="col-md-8">
       <mat-card>
         <mat-card-content>
-          <!-- <h2 class="example-h2">{{ user?.full_name }}</h2> -->
           <mat-tab-group class="demo-tab-group">
             <mat-tab label="Orders">
               <div class="tab-content">
@@ -93,7 +92,7 @@
           </mat-card-title>
           <mat-card-subtitle>@{{ user?.username }}</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image [src]="user?.image || 'assets/user.png'" />
+        <img mat-card-image [src]="user?.image || defaultUserImage" />
         <mat-card-content>
           <p class="user-info-section">
             <label>About:</label>

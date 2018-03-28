@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UserService } from '../../core/services';
-import { User } from '../../core/services/models';
+import { UserService } from '@app/services';
+import { User } from '@app/models';
 import { EditUserInput } from '../../core/services/user/user.mutation';
-
+import { BaseComponent } from '@app/components';
 
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss']
 })
-export class UserProfileComponent implements OnInit {
+export class UserProfileComponent extends BaseComponent implements OnInit {
   user: User;
   editProfileFormData: EditUserInput;
   isCurrentLoggedInUser = false;
@@ -18,7 +18,7 @@ export class UserProfileComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private userService: UserService
-  ) { }
+  ) { super(); }
 
   ngOnInit() {
     this.route.params.subscribe(params => {

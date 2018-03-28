@@ -2,6 +2,7 @@ import { Component, OnInit, Query } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { TransactionFormComponent } from '../../transaction/transaction-form/transaction-form.component';
+import { BaseComponent } from '@app/components';
 
 import gql from 'graphql-tag';
 
@@ -10,10 +11,10 @@ import gql from 'graphql-tag';
   templateUrl: './activity-area.component.html',
   styleUrls: ['./activity-area.component.scss']
 })
-export class ActivityAreaComponent implements OnInit {
+export class ActivityAreaComponent extends BaseComponent implements OnInit {
   transactions: any[];
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog) { super(); }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(TransactionFormComponent, {
