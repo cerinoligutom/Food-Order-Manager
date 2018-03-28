@@ -7,9 +7,9 @@
 </pre> -->
 
 <form #addProductForm="ngForm">
-  <input type="hidden" [(ngModel)]="data.vendorId" name="vendor_id">
+  <input type="hidden" [(ngModel)]="data.vendorId" name="id">
   <custom-input name="name" [(ngModel)]="name" type="text" placeholder="Name" required></custom-input>
-  <custom-input name="price" [(ngModel)]="price" type="number" placeholder="Price"></custom-input>
+  <custom-input name="price" [(ngModel)]="price" type="number" placeholder="Price" required></custom-input>
   <custom-input name="image" [(ngModel)]="image" type="text" placeholder="Image URL"></custom-input>
   <button mat-button type="submit" (click)="onCreateProduct(addProductForm.value)" cdkFocusInitial>Create</button>
   <button mat-button (click)="onNoClick()">Cancel</button>

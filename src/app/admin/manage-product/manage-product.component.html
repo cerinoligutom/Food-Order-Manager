@@ -1,0 +1,8 @@
+<form #manageProductForm="ngForm">
+  <input type="hidden" [(ngModel)]="data.product.id" name="id">
+  <custom-input name="name" [(ngModel)]="data.product.name" type="text" placeholder="Name" required></custom-input>
+  <custom-input name="price" [(ngModel)]="data.product.price" type="number" placeholder="Price" required></custom-input>
+  <custom-input name="image" [(ngModel)]="data.product.image" type="text" placeholder="Image URL"></custom-input>
+  <button mat-raised-button color="accent" (click)="onEditProduct(manageProductForm.value)" cdkFocusInitial>Update</button>
+  <button mat-raised-button color="warn" (click)="onDeleteProduct(manageProductForm.value.id)">Remove</button>
+</form>

@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Apollo } from "apollo-angular";
 import { VendorProductsQueryResponse, getVendorProductsQuery } from "./product.query";
 import { map } from "rxjs/operators";
-import { AddProductInput, ProductMutationResponse, AddProductMutation } from "./product.mutation";
+import { AddProductInput, ProductMutationResponse, AddProductMutation, EditProductInput, EditProductMutation, DeleteProductMutation } from "./product.mutation";
 
 
 @Injectable()
@@ -24,7 +24,6 @@ export class ProductService {
   }
 
   addProduct(input: AddProductInput) {
-
     return this.apollo.mutate<ProductMutationResponse>({
       mutation: AddProductMutation,
       variables: {
@@ -34,5 +33,28 @@ export class ProductService {
       map(result => result.data.Product)
     );
   }
+
+  editProduct(input: EditProductInput) {
+    return this.apollo.mutate<ProductMutationResponse>({
+      mutation: EditProductMutation,
+      variables: {
+        editProductInput: input
+      }
+    }).pipe(
+      map(result => result.data.Product)
+    );
+  }
+
+  deleteProduct(productId) {
+    return this.apollo.mutate<ProductMutationResponse>({
+      mutation: DeleteProductMutation,
+      variables: {
+        productId: productId
+      }
+    }).pipe(
+      map(result => result.data)
+    );
+  }
+
 
 }
