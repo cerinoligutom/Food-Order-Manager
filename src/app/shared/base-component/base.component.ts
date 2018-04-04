@@ -5,6 +5,7 @@ import * as moment from 'moment';
 export class BaseComponent {
   defaultUserImage = 'assets/user.png';
   defaultVendorImage = 'assets/vendor.png';
+  defaultProductImage = 'assets/vendor.png';
   currentLoggedInUser: User;
 
   constructor() {

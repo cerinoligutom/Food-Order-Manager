@@ -60,7 +60,7 @@
                 <!-- image Column -->
                 <ng-container matColumnDef="image">
                   <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
-                  <mat-cell *matCellDef="let element"> {{element.image}} </mat-cell>
+                  <mat-cell *matCellDef="let element"> <img class="product-image" [src]="element.image || defaultProductImage" > </mat-cell>
                 </ng-container>
 
                 <!-- Name Column -->

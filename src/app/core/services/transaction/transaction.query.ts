@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { Transaction } from '../models';
+import { Transaction, TransactionOrders } from '../models';
 
 export interface GetTransactionsQueryResponse {
   Transactions: Transaction[];
@@ -9,9 +9,13 @@ export interface GetTransactionQueryResponse {
   Transaction: Transaction;
 }
 
+export interface GetTransactionOrdersQueryResponse {
+  Transaction: TransactionOrders;
+}
+
 export const GetTransactionQuery = gql`
-  query getTransaction{
-    Transaction(id: "rys6An_cM"){
+  query getTransactionQuery($transactionId: ID!){
+    Transaction(id: $transactionId){
       id
       created_at
       Host{
@@ -42,6 +46,7 @@ export const GetTransactionsQuery = gql`
         username
         image
         full_name
+        last_active
       }
       Vendor {
         id
@@ -52,6 +57,34 @@ export const GetTransactionsQuery = gql`
         id
       }
       created_at
+    }
+  }
+`;
+
+export const GetTransactionOrders = gql`
+  query getTransactionOrdersQuery($transactionId: ID!){
+    Transaction(id: $transactionId) {
+      id
+      Orders {
+        id
+        User{
+          id
+          full_name
+          image
+        }
+        comment
+        isFullyPaid
+        OrderItems {
+          id
+          Product {
+            id
+            name
+            image
+            price
+          }
+          quantity
+        }
+      }
     }
   }
 `;

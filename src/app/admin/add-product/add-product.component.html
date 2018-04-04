@@ -1,13 +1,5 @@
-<p>
-  add-product works!
-</p>
-
-<!-- <pre>
-    {{ data.vendorId }}
-</pre> -->
-
 <form #addProductForm="ngForm">
-  <input type="hidden" [(ngModel)]="data.vendorId" name="id">
+  <input type="hidden" [(ngModel)]="data.vendorId" name="vendor_id">
   <custom-input name="name" [(ngModel)]="name" type="text" placeholder="Name" required></custom-input>
   <custom-input name="price" [(ngModel)]="price" type="number" placeholder="Price" required></custom-input>
   <custom-input name="image" [(ngModel)]="image" type="text" placeholder="Image URL"></custom-input>

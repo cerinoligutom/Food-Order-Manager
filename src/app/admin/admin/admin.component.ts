@@ -54,6 +54,7 @@ export class AdminComponent extends BaseComponent implements OnInit {
   onVendorExpand(vendorId) {
     this.productService.getVendorProducts(vendorId).subscribe(result => {
       this.dataSource = new MatTableDataSource(result);
+      console.log('products', this.dataSource);
     });
   }
 

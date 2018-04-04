@@ -1,0 +1,21 @@
+<p>
+  add-order-form works!
+</p>
+<pre>
+  {{ data.transactionId }}
+</pre>
+<form>
+  <mat-form-field>
+    <input matInput placeholder="Products" aria-label="Products" [matAutocomplete]="auto" [formControl]="productCtrl">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let product of vendorProducts" [value]="product.name">
+        <small>
+          {{ product.name }}
+        </small>
+        <!-- <img style="vertical-align:middle;" aria-hidden src="{{state.flag}}" height="25" />
+        <span>{{ state.name }}</span> |
+        <small>Population: {{state.population}}</small> -->
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
