@@ -4,13 +4,14 @@ import { TransactionRoutingModule } from './transaction-routing.module';
 import { TransactionFormComponent } from './transaction-form/transaction-form.component';
 
 import { SharedModule } from '../shared/shared.module';
+import { TransactionComponent } from './transaction/transaction.component';
 
 
 @NgModule({
   imports: [
-    TransactionRoutingModule,
-    SharedModule
+    SharedModule,
+    TransactionRoutingModule
   ],
-  declarations: [TransactionFormComponent]
+  declarations: [TransactionFormComponent, TransactionComponent]
 })
 export class TransactionModule { }

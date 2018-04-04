@@ -1,0 +1,16 @@
+@import 'variables';
+
+.img-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+  .image {
+    border: 1px solid $white;
+    border-radius: 50%;
+    height: 2.5em;
+    width: 2.5em;
+    object-fit: contain;
+  }
+}

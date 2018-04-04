@@ -5,6 +5,7 @@ import { StatisticsModule } from '../statistics/statistics.module';
 import { UserProfileModule } from '../user-profile/user-profile.module';
 import { HomeComponent } from './home/home.component';
 import { AdminModule } from '../admin/admin.module';
+import { TransactionModule } from '../transaction/transaction.module';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
       {
         path: 'admin',
         loadChildren: () => AdminModule
+      },
+      {
+        path: 'transaction',
+        loadChildren: () => TransactionModule
       }
     ]
   }

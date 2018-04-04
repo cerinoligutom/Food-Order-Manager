@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TransactionFormComponent } from './transaction-form/transaction-form.component';
+import { TransactionComponent } from './transaction/transaction.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: TransactionFormComponent
+    path: ':id',
+    component: TransactionComponent
   }
 ];
 

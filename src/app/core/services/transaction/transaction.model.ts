@@ -1,10 +1,10 @@
-import { Vendor, Order } from '../models';
+import { Vendor, Order, ScalarDate } from '../models';
 
 export interface Transaction {
     id: number;
     vendor: Vendor;
     description: string;
     delivery_free: number;
-    created_at: Date;
+    created_at: ScalarDate;
     is_fullfilled: boolean;
 }

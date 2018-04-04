@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {Apollo} from 'apollo-angular';
+import { Apollo } from 'apollo-angular';
 import { Transaction } from './transaction.model';
-import {map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import {
   AddTransactionInput,
   AddTransactionMutation,
@@ -9,7 +9,7 @@ import {
 } from './transaction.mutation';
 
 import gql from 'graphql-tag';
-import { GetTransactionQueryResponse, GetTransactionsQuery } from './transaction.query';
+import { GetTransactionsQueryResponse, GetTransactionsQuery, GetTransactionQueryResponse, GetTransactionQuery } from './transaction.query';
 
 @Injectable()
 export class TransactionService {
@@ -18,10 +18,21 @@ export class TransactionService {
   constructor(private apollo: Apollo) { }
 
   getTransactions() {
-    return this.apollo.watchQuery<GetTransactionQueryResponse>({
+    return this.apollo.watchQuery<GetTransactionsQueryResponse>({
       query: GetTransactionsQuery
     }).valueChanges.pipe(
       map(result => result.data.Transactions)
+    );
+  }
+
+  getTransaction(transactionId) {
+    return this.apollo.watchQuery<GetTransactionQueryResponse>({
+      query: GetTransactionQuery,
+      variables: {
+        transactionId: transactionId
+      }
+    }).valueChanges.pipe(
+      map(result => result.data.Transaction)
     );
   }
 
@@ -32,8 +43,8 @@ export class TransactionService {
         addTransactionInput: input
       }
     })
-    .pipe(
-      map(result => result.data.Transaction)
-    );
+      .pipe(
+        map(result => result.data.Transaction)
+      );
   }
 }

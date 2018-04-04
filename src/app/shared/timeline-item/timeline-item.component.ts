@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BaseComponent } from '@app/components';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-timeline-item',
@@ -9,9 +10,16 @@ import { BaseComponent } from '@app/components';
 export class TimelineItemComponent extends BaseComponent implements OnInit {
   @Input() timelineItem: any;
 
-  constructor() { super(); }
+  constructor(
+    private router: Router,
+
+  ) { super(); }
 
   ngOnInit() {
+  }
+
+  goToTransactionPage() {
+    this.router.navigate(['/transaction', this.timelineItem.id]);
   }
 
 }
