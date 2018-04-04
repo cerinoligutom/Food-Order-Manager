@@ -1,24 +1,21 @@
 <div class="timeline-item">
   <mat-card class="arrow_box">
     <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Shiba Inu</mat-card-title>
-      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+      <img mat-card-avatar [src]="timelineItem.Host.image || defaultUserImage" alt="{{ timelineItem.Host.username }} image">
+      <mat-card-title>{{ timelineItem.Host.full_name }}</mat-card-title>
+      <mat-card-subtitle>{{ formatDates(timelineItem.created_at).shortDate }} {{ formatDates(timelineItem.created_at).time }}</mat-card-subtitle>
     </mat-card-header>
-    <div (click)="goToTransactionPage()">
-      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-    </div>
-    <mat-card-content>
-      <p>
-        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes
-        very well with mountainous terrain, the Shiba Inu was originally bred for hunting.
+    <img mat-card-image class="vendor-image" (click)="goToTransactionPage()" [src]="timelineItem.Vendor.image || defaultVendorImage" alt="{{ timelineItem.Vendor.name }} image">
+    <mat-card-content class="card-content">
+      <p class="order-count-section">
+        <span><strong>{{ timelineItem.Orders.length }}</strong> orders placed.</span>
+      </p>
+      <p class="description-section" *ngIf="timelineItem.description">
+        {{ timelineItem.description }}
       </p>
     </mat-card-content>
-    <!-- <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions> -->
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="goToTransactionPage()">Join</button>
+    </mat-card-actions>
   </mat-card>
 </div>
-
-<pre>{{ timelineItem | json }}</pre>

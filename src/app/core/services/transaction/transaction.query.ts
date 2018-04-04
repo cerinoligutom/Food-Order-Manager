@@ -40,12 +40,18 @@ export const GetTransactionsQuery = gql`
       Host {
         id
         username
+        image
+        full_name
       }
       Vendor {
         id
         name
         image
       }
+      Orders {
+        id
+      }
+      created_at
     }
   }
 `;
