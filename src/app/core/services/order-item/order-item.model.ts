@@ -14,3 +14,8 @@ export interface AddOrderItemInput{
   product_id: string;
   quantity: number;
 }
+
+export interface AddInitialOrderItemInput{
+  product_id: string;
+  quantity: number;
+}

@@ -70,12 +70,19 @@ export const GetTransactionOrders = gql`
         User{
           id
           full_name
+          username
+          nickname
           image
         }
         comment
         isFullyPaid
         OrderItems {
           id
+          Order{
+            id
+            comment
+            isFullyPaid
+          }
           Product {
             id
             name

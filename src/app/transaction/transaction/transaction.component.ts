@@ -37,15 +37,20 @@ export class TransactionComponent extends BaseComponent implements OnInit {
 
   }
 
-  openAddOrderDialog(transactionId, vendorId){
+  openAddOrderDialog(transactionId, vendorId) {
     const dialogRef = this.dialog.open(AddOrderFormComponent, {
-      width: '500px',
+      width: '1200px',
       data: {
         transactionId: transactionId,
         vendorId: vendorId
       }
     });
 
+    dialogRef.afterClosed().subscribe(order => {
+      if (order) {
+        this.transactionOrders = [...this.transactionOrders, order];
+      }
+    });
   }
 
 }

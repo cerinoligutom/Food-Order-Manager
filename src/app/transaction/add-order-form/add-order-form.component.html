@@ -1,21 +1,47 @@
-<p>
-  add-order-form works!
-</p>
-<pre>
+<!-- <pre>
   {{ data.transactionId }}
-</pre>
+</pre> -->
+<div>
+  <mat-list>
+    <mat-list-item *ngFor="let orderItem of orderItems">
+      <div style="display: flex; flex-wrap: wrap;">
+        <!-- <pre>{{orderItem.pro | json}}</pre> -->
+        {{ orderItem.product.name }}
+
+        <button mat-icon-button color="primary" [disabled]="orderItem.quantity === 1" (click)="decrementQuantity(orderItem)">
+          <mat-icon>remove</mat-icon>
+        </button>
+        {{ orderItem.quantity }}
+
+        <button mat-icon-button color="primary" (click)="incrementQuantity(orderItem)">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </mat-list-item>
+  </mat-list>
+</div>
 <form>
-  <mat-form-field>
-    <input matInput placeholder="Products" aria-label="Products" [matAutocomplete]="auto" [formControl]="productCtrl">
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let product of vendorProducts" [value]="product.name">
-        <small>
-          {{ product.name }}
-        </small>
-        <!-- <img style="vertical-align:middle;" aria-hidden src="{{state.flag}}" height="25" />
-        <span>{{ state.name }}</span> |
-        <small>Population: {{state.population}}</small> -->
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
+  <div class="order-form-input-container">
+    <div class="add-product-form-container">
+      <mat-form-field>
+        <input name="Product" matInput placeholder="Products" aria-label="Products" [matAutocomplete]="auto">
+        <mat-autocomplete [displayWith]="getProductName" (optionSelected)="getSelectedProduct($event.option.value)" #auto="matAutocomplete">
+          <mat-option *ngFor="let product of filteredProducts | async" [value]="product">
+            <img style="vertical-align:middle;" aria-hidden src="{{product.image}}" height="25" />
+            <small>
+              {{ product.name }}
+            </small>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <custom-input name="Quantity" [(ngModel)]="addOrderItemInput.quantity" class="quantity-input" type="number" min="1" placeholder="Quantity"></custom-input>
+      <button mat-raised-button color="warn" class="add-order-button" (click)="addToOrderItemsList()">Add order</button>
+    </div>
+
+    <div class="submit-order-container">
+      <custom-input type="textarea" name="comment" [(ngModel)]="orderComment"></custom-input>
+      <button mat-raised-button color="warn" class="add-order-button" [disabled]="!hasOrdered" (click)="onCreateOrder()">Submit order</button>
+    </div>
+  </div>
+
 </form>
