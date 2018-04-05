@@ -9,6 +9,7 @@ import gql from 'graphql-tag';
 import { AddTransactionInput } from '../../core/services/transaction/transaction.mutation';
 import { Apollo } from 'apollo-angular';
 import { VendorService, UserService, TransactionService } from '@app/services';
+import { Transaction } from '@app/models';
 
 @Component({
   selector: 'app-activity-area',
@@ -16,7 +17,7 @@ import { VendorService, UserService, TransactionService } from '@app/services';
   styleUrls: ['./activity-area.component.scss']
 })
 export class ActivityAreaComponent extends BaseComponent implements OnInit {
-  transactions: any[];
+  transactions: Transaction[];
 
   // constructor(private apollo: Apollo) { }
   constructor(
@@ -31,8 +32,6 @@ export class ActivityAreaComponent extends BaseComponent implements OnInit {
       width: '300px',
       data: {}
     });
-
-
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {

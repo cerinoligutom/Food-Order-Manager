@@ -23,13 +23,13 @@ body {
     width: 100%;
 }
 
-.dashboard {
-    app-activity-area {
-        width: 100%;
-        .row:first-child {
-            width: 100%;
-        }
-    }
-}
+// .dashboard {
+//     app-activity-area {
+//         width: 100%;
+//         .row:first-child {
+//             width: 100%;
+//         }
+//     }
+// }
 
 router-outlet + * { flex: 1 1 auto ; display: flex ; flex-direction: column ; }

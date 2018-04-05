@@ -7,4 +7,5 @@ export interface Transaction {
     delivery_free: number;
     created_at: ScalarDate;
     is_fullfilled: boolean;
+    Orders: Order[];
 }

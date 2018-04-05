@@ -50,6 +50,12 @@ export const GetTransactionsQuery = gql`
       }
       Orders {
         id
+        created_at
+        User {
+          id
+          image
+          full_name
+        }
       }
       created_at
     }

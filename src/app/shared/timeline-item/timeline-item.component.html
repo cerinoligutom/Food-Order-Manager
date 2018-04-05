@@ -1,14 +1,16 @@
 <div class="timeline-item">
-  <mat-card class="arrow_box">
+  <mat-card class="arrow_box col-md-6">
     <mat-card-header>
       <img mat-card-avatar [src]="timelineItem.Host.image || defaultUserImage" alt="{{ timelineItem.Host.username }} image">
       <mat-card-title>{{ timelineItem.Host.full_name }}</mat-card-title>
-      <mat-card-subtitle>{{ formatDates(timelineItem.created_at).shortDate }} {{ formatDates(timelineItem.created_at).time }}</mat-card-subtitle>
+      <mat-card-subtitle>{{ formatDates(timelineItem.created_at.raw).shortDate }} {{ formatDates(timelineItem.created_at.raw).time }}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image class="vendor-image" (click)="goToTransactionPage()" [src]="timelineItem.Vendor.image || defaultVendorImage" alt="{{ timelineItem.Vendor.name }} image">
+    <img mat-card-image class="vendor-image" (click)="goToTransactionPage()" [src]="timelineItem.Vendor.image || defaultVendorImage"
+      alt="{{ timelineItem.Vendor.name }} image">
     <mat-card-content class="card-content">
       <p class="order-count-section">
-        <span><strong>{{ timelineItem.Orders.length }}</strong> orders placed.</span>
+        <span>
+          <strong>{{ timelineItem.Orders.length }}</strong> Orders Placed</span>
       </p>
       <p class="description-section" *ngIf="timelineItem.description">
         {{ timelineItem.description }}
@@ -18,4 +20,14 @@
       <button mat-raised-button color="primary" (click)="goToTransactionPage()">Join</button>
     </mat-card-actions>
   </mat-card>
+
+  <div class="users-container col-md-6">
+    <mat-card class="arrow_box user-container" *ngIf="timelineItem.Orders.length > 0">
+      <mat-card-header *ngFor="let order of timelineItem.Orders">
+        <img mat-card-avatar [src]="order.User.image || defaultUserImage" alt="{{ order.User.username }} image">
+        <mat-card-title>{{ order.User.full_name }}</mat-card-title>
+        <mat-card-subtitle>{{ formatDates(order.created_at.raw).shortDate }} {{ formatDates(order.created_at.raw).time }}</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+  </div>
 </div>

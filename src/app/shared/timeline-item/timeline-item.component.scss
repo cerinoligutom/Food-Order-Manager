@@ -1,7 +1,10 @@
 @import 'variables';
 
 .timeline-item {
+  display: flex;
+  flex-direction: row;
   position: relative;
+  margin-bottom: 1em;
 
   &:before {
     content: '';
@@ -10,10 +13,10 @@
     height: 30px;
     width: 30px;
     top: 22px;
-    left: -52px;
+    left: -50px;
     background-color: $blue;
-    border: 6px solid $light-grey;
-    box-shadow: 0 0 0 2px $blue;
+    border: 4px solid $light-blue;
+    // box-shadow: 0 0 0 2px $blue;
   }
 
   .arrow_box {
@@ -56,6 +59,17 @@
 
     .description-section {
       align-self: center;
+    }
+  }
+
+  .users-container {
+    display: flex;
+    flex-direction: column;
+
+    .user-container {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
     }
   }
 }
