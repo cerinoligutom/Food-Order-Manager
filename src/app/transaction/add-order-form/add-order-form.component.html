@@ -24,7 +24,7 @@
   <div class="order-form-input-container">
     <div class="add-product-form-container">
       <mat-form-field>
-        <input name="Product" matInput placeholder="Products" aria-label="Products" [matAutocomplete]="auto">
+        <input name="Product" matInput placeholder="Products" aria-label="Products" [matAutocomplete]="auto" [formControl]="productCtrl">
         <mat-autocomplete [displayWith]="getProductName" (optionSelected)="getSelectedProduct($event.option.value)" #auto="matAutocomplete">
           <mat-option *ngFor="let product of filteredProducts | async" [value]="product">
             <img style="vertical-align:middle;" aria-hidden src="{{product.image}}" height="25" />

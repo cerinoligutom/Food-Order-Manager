@@ -71,8 +71,7 @@ export class AddOrderFormComponent extends BaseComponent implements OnInit {
   }
 
   filterProducts(name: string) {
-    // console.log('filter', this.vendorProducts.filter(product => product.name.toLowerCase().indexOf(name.toLowerCase()) !== -1));
-    return this.vendorProducts.filter(product => product.name.toLowerCase().indexOf(name.toLowerCase()) !== -1);
+     return this.vendorProducts.filter(product => product.name.toLowerCase().indexOf(name.toLowerCase()) !== -1);
   }
 
   getSelectedProduct(product) {
@@ -80,6 +79,7 @@ export class AddOrderFormComponent extends BaseComponent implements OnInit {
   }
 
   getProductName(product) {
+    if (!product) return '';
     return product.name;
   }
 
