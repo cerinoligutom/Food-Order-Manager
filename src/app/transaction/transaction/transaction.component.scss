@@ -14,3 +14,19 @@
     object-fit: contain;
   }
 }
+
+.transaction-host-panel{
+  margin-top:10px;
+}
+
+.order-row{
+  .order-items-panel{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    div{
+      margin-top:10px;
+    }
+  }
+}

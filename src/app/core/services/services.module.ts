@@ -5,9 +5,10 @@ import {
   AuthService,
   UserService,
   TransactionService,
-  ProductService
+  ProductService,
+  OrderService,
+  OrderItemService
 } from './index';
-
 @NgModule({
   imports: [
     CommonModule
@@ -18,7 +19,9 @@ import {
     AuthService,
     UserService,
     ProductService,
-    TransactionService
+    TransactionService,
+    OrderService,
+    OrderItemService
   ]
 })
 export class ServicesModule {

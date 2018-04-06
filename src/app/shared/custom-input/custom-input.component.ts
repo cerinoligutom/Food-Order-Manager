@@ -26,6 +26,9 @@ export class CustomInputComponent implements ControlValueAccessor {
   @Input() required: boolean;
   @Input() email: boolean;
 
+  @Input() max: number;
+  @Input() min: number;
+
   @Input() options: OptionItem[];
 
 

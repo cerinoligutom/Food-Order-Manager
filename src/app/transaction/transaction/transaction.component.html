@@ -1,53 +1,56 @@
-<pre>
-    {{ transaction | json }}
-</pre>
-
+<!-- ORDER ITEMS -->
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
-      <div class="row">
-        <div class="col-md-1">
-            <div class="img-container">
-                <img class="image" [src]="transaction?.Vendor.image || defaultVendorImage">
-            </div>
-        </div>
-        <div class="col-md-2">
-          {{ transaction.Vendor.name }}
-          {{ formatDates(transaction.created_at.raw).shortDate }}
-          {{ formatDates(transaction.created_at.raw).time }}
-        </div>
-        <div class="col-md-6">
-            <button mat-raised-button color="primary">Order NOW!</button>
-        </div>
-      </div>
+    <div class="col-md-12" style="    padding: 5px 0px 5px 30px;">
+      <mat-card class="col-md-12" style="display:flex;flex-direction:row;justify-content:space-between">
+        <mat-card-header>
+          <img mat-card-avatar [src]="transaction?.Vendor.image || defaultVendorImage" alt="{{ transaction?.Vendor.name }} image">
+          <mat-card-title>{{ transaction?.Vendor.name }}</mat-card-title>
+          <mat-card-subtitle>{{ formatDates(transaction?.created_at.raw).shortDate }} {{ formatDates(transaction?.created_at.raw).time }}</mat-card-subtitle>
+        </mat-card-header>
+        <button mat-raised-button color="warn" (click)="openAddOrderDialog(transaction?.id, transaction?.Vendor.id)">Order NOW!</button>
+      </mat-card>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-8" style="display:flex;flex-direction:row;flex-wrap:wrap">
-      <div class="col-md-6" style="margin-top:10px;" *ngFor="let x of [1,2,3,4]">
+  <div class="row order-row">
+    <div class="col-md-8 order-items-panel">
+      <div class="col-md-6" *ngFor="let order of transactionOrders">
         <mat-card>
           <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>Shiba Inu</mat-card-title>
-            <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+            <img mat-card-avatar [src]="order?.User.image || defaultUserImage" alt="{{ order?.User.name }} image">
+            <mat-card-title>{{ order?.User.full_name }}</mat-card-title>
+            <mat-card-subtitle>{{ order?.User.username }}</mat-card-subtitle>
           </mat-card-header>
-          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
           <mat-card-content>
-            <p>
-              The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes
-              very well with mountainous terrain, the Shiba Inu was originally bred for hunting.
-            </p>
+            <mat-list *ngFor="let orderItem of order.OrderItems">
+              <mat-list-item>
+                {{ orderItem.quantity }} - {{ orderItem.Product.name }}
+              </mat-list-item>
+              <small style="color:red">
+                  {{ orderItem.Order.comment }}
+              </small>
+            </mat-list>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-button>LIKE</button>
-            <button mat-button>SHARE</button>
           </mat-card-actions>
         </mat-card>
       </div>
     </div>
 
-    <div class="col-md-4">
-
+    <!-- TRANSACTION SUMMARY -->
+    <div class="col-md-4 transaction-host-panel">
+      <mat-card class="col-md-12">
+        <mat-card-header>
+          <img mat-card-avatar [src]="transaction?.Host.image || defaultUserImage" alt="{{ transaction?.Host.name }} image">
+          <mat-card-title>{{ transaction?.Host.full_name }}</mat-card-title>
+          <mat-card-subtitle>{{ transaction?.Host.nickname }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          Summary
+        </mat-card-content>
+        <mat-card-actions>
+        </mat-card-actions>
+      </mat-card>
     </div>
   </div>
 </div>

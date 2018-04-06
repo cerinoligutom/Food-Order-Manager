@@ -1,0 +1,26 @@
+.order-form-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  .add-product-form-container{
+    display:flex;
+    width:100%;
+    align-items: center;
+  }
+
+  .quantity-input {
+    margin-left: 10px;
+  }
+
+  .add-order-button {
+    margin-left: 10px;
+  }
+
+  .submit-order-container{
+    display:flex;
+    flex-direction: column;
+    width:100%;
+  }
+}

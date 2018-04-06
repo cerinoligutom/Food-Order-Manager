@@ -1,8 +1,10 @@
-import { Transaction } from '../models';
+import { Transaction, User, OrderItem } from '../models';
 
 export interface Order {
-    id: number;
-    comments: string;
-    isFullyPaind: boolean;
-    transaction: Transaction;
+  id: string;
+  comment: string;
+  isFullyPaid: boolean;
+  Transaction: Transaction;
+  User: User;
+  OrderItems: OrderItem[];
 }
