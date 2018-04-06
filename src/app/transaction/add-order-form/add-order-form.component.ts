@@ -65,12 +65,15 @@ export class AddOrderFormComponent extends BaseComponent implements OnInit {
 
       this.filteredProducts = this.productCtrl.valueChanges.pipe(
         startWith(''),
-        map(product => product ? this.filterProducts(product) : this.vendorProducts.slice())
+        map((product: any) => product ? this.filterProducts(product) : this.vendorProducts.slice())
       );
     });
   }
 
-  filterProducts(name: string) {
+  filterProducts(product: any) {
+    let name = (product && product.name ? product.name : product);
+
+    console.log('name', name);
      return this.vendorProducts.filter(product => product.name.toLowerCase().indexOf(name.toLowerCase()) !== -1);
   }
 
@@ -94,6 +97,8 @@ export class AddOrderFormComponent extends BaseComponent implements OnInit {
       product: undefined,
       quantity: 1
     };
+
+    this.productCtrl.setValue('');
   }
 
   onCreateOrder() {

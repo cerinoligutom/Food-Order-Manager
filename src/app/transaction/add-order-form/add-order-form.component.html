@@ -35,7 +35,7 @@
         </mat-autocomplete>
       </mat-form-field>
       <custom-input name="Quantity" [(ngModel)]="addOrderItemInput.quantity" class="quantity-input" type="number" min="1" placeholder="Quantity"></custom-input>
-      <button mat-raised-button color="warn" class="add-order-button" (click)="addToOrderItemsList()">Add order</button>
+      <button mat-raised-button color="warn" class="add-order-button" [disabled]="!addOrderItemInput.product" (click)="addToOrderItemsList()">Add order</button>
     </div>
 
     <div class="submit-order-container">
