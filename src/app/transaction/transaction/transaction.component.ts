@@ -6,6 +6,14 @@ import { Order } from '@app/models';
 import { MatDialog } from '@angular/material';
 import { AddOrderFormComponent } from '../add-order-form/add-order-form.component';
 
+class TransactionFactory {
+  formatTransactionSummaryData(orders: Order[]) {
+    // TODO:
+    // Restructure data for summary
+    return {};
+  }
+}
+
 @Component({
   selector: 'app-transaction',
   templateUrl: './transaction.component.html',
@@ -15,6 +23,8 @@ export class TransactionComponent extends BaseComponent implements OnInit {
 
   transaction: any;
   transactionOrders: Order[];
+
+  transactionFactory = new TransactionFactory();
 
   constructor(
     private route: ActivatedRoute,
@@ -53,4 +63,14 @@ export class TransactionComponent extends BaseComponent implements OnInit {
     });
   }
 
+  calculateTotalSum(orderItems) {
+    console.log('orderItems:', orderItems);
+    return orderItems.reduce((sum, orderItem) => {
+      return orderItem.Product.price * orderItem.quantity
+    }, 0);
+  }
+
+  formatTransactionSummaryData(orders: Order[] = this.transactionOrders) {
+    return this.transactionFactory.formatTransactionSummaryData(orders);
+  }
 }

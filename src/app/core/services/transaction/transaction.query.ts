@@ -73,6 +73,7 @@ export const GetTransactionOrders = gql`
       id
       Orders {
         id
+        created_at
         User{
           id
           full_name

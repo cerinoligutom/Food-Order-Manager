@@ -5,12 +5,10 @@
   align-items: center;
   justify-content: center;
 
-
-  .image {
-    border: 1px solid $white;
-    border-radius: 50%;
-    height: 2.5em;
-    width: 2.5em;
+  .product-image {
+    border: 1px solid white;
+    height: 50px;
+    width: 50px;
     object-fit: contain;
   }
 }
@@ -25,8 +23,31 @@
     flex-direction: row;
     flex-wrap: wrap;
 
-    div{
+    > div {
       margin-top:10px;
     }
+
+    .comment-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .total-sum-container {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      color: $red;
+    }
+  }
+}
+
+.order-item-container {
+  display: flex;
+
+  .order-item-details {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    justify-content: space-evenly;
   }
 }
