@@ -1,24 +1,41 @@
-<!-- <pre>
-  {{ data.transactionId }}
-</pre> -->
-<div>
-  <mat-list>
-    <mat-list-item *ngFor="let orderItem of orderItems">
-      <div style="display: flex; flex-wrap: wrap;">
-        <!-- <pre>{{orderItem.pro | json}}</pre> -->
-        {{ orderItem.product.name }}
+<div class="order-items-table-container" *ngIf="orderItems.length > 0">
+  <table class="order-items-table" matSort (matSortChange)="sortData($event)">
+    <tr>
+      <th class="table-header" mat-sort-header="name">Product Name</th>
+      <th class="table-header" mat-sort-header="price">Price</th>
+      <th class="table-header" mat-sort-header="total">Sum</th>
+      <th class="table-header" mat-sort-header="quantity">Quantity</th>
+    </tr>
 
+    <tr *ngFor="let orderItem of orderItems">
+      <th>
+        {{ orderItem.product.name }}
+      </th>
+      <th>
+        ₱ {{ orderItem.product.price | number:'.2' }}
+      </th>
+      <th>
+        ₱ {{ orderItem.product.price * orderItem.quantity | number:'.2' }}
+      </th>
+      <th style="display: flex; align-items: center; justify-content: center;">
         <button mat-icon-button color="primary" [disabled]="orderItem.quantity === 1" (click)="decrementQuantity(orderItem)">
           <mat-icon>remove</mat-icon>
         </button>
-        {{ orderItem.quantity }}
+
+        <div>
+          {{ orderItem.quantity }}
+        </div>
 
         <button mat-icon-button color="primary" (click)="incrementQuantity(orderItem)">
           <mat-icon>add</mat-icon>
         </button>
-      </div>
-    </mat-list-item>
-  </mat-list>
+      </th>
+    </tr>
+  </table>
+  <mat-divider></mat-divider>
+  <div class="total-sum-container">
+    <h2>Total: ₱ {{ calculateTotalSum() | number:'.2' }}</h2>
+  </div>
 </div>
 <form>
   <div class="order-form-input-container">

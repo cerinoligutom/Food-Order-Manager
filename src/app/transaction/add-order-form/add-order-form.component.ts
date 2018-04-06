@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, Sort } from '@angular/material';
 import { ProductService, OrderService } from '@app/services';
 import { FormControl } from '@angular/forms';
 
@@ -15,7 +15,7 @@ class AddOrderFormFactory {
     return input.map(orderItem => {
       return {
         product_id: orderItem.product.id,
-        quantity: orderItem.quantity
+        quantity: +orderItem.quantity
       };
     });
   }
@@ -48,6 +48,8 @@ export class AddOrderFormComponent extends BaseComponent implements OnInit {
   orderComment: string;
 
   hasOrdered: boolean = false;
+
+  sortedData;
 
   constructor(
     public dialogRef: MatDialogRef<AddOrderFormComponent>,
@@ -123,4 +125,33 @@ export class AddOrderFormComponent extends BaseComponent implements OnInit {
   decrementQuantity(orderItem) {
     orderItem.quantity -= 1;
   }
+
+  sortData(sort: Sort) {
+    const data = this.orderItems.slice();
+    if (!sort.active || sort.direction == '') {
+      this.sortedData = data;
+      return;
+    }
+
+    this.sortedData = data.sort((a, b) => {
+      let isAsc = sort.direction == 'asc';
+      switch (sort.active) {
+        case 'name': return compare(a.product.name, b.product.name, isAsc);
+        case 'quantity': return compare(+a.quantity, +b.quantity, isAsc);
+        case 'price': return compare(+a.product.price, +b.product.price, isAsc);
+        case 'total': return compare(+a.product.price * +a.quantity, +b.product.price * +a.quantity, isAsc);
+        default: return 0;
+      }
+    });
+  }
+
+  calculateTotalSum() {
+    return this.orderItems.reduce((sum, orderItem) => {
+      return orderItem.product.price * orderItem.quantity
+    }, 0);
+  }
+}
+
+function compare(a, b, isAsc) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }

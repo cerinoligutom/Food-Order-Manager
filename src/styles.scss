@@ -33,3 +33,16 @@ body {
 // }
 
 router-outlet + * { flex: 1 1 auto ; display: flex ; flex-direction: column ; }
+
+
+.order-items-table {
+  width: 100%;
+
+  .table-header {
+    text-align: center;
+
+    .mat-sort-header-container {
+      justify-content: center;
+    }
+  }
+}
