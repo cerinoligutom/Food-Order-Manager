@@ -18,11 +18,14 @@ export class TransactionService {
   constructor(private apollo: Apollo) { }
 
   getTransactions() {
+    console.log('get transaction service');
     return this.apollo.watchQuery<GetTransactionsQueryResponse>({
-      query: GetTransactionsQuery
+      query: GetTransactionsQuery,
+      fetchPolicy: 'cache-and-network',
     }).valueChanges.pipe(
-      map(result => result.data.Transactions)
+      map(result => result.data ? result.data.Transactions : [])
     );
+
   }
 
   getTransaction(transactionId) {

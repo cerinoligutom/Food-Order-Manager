@@ -4,6 +4,8 @@ import { Subscription } from 'rxjs/Subscription';
 
 const AUTH_CONFIG = {
     BASE_URL: 'http://graphql-dev.fom.zeferinix.com/auth/'
+    // BASE_URL: 'http://192.168.1.32:3000/auth/'
+
 };
 
 const httpOptions = {

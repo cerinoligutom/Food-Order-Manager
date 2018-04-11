@@ -51,6 +51,16 @@ export class GraphQlModule {
     apollo.create({
       link: auth.concat(http),
       cache: new InMemoryCache()
+      // defaultOptions: {
+      //   watchQuery: {
+      //     fetchPolicy: 'cache-and-network',
+      //     errorPolicy: 'ignore',
+      //   },
+      //   query: {
+      //     fetchPolicy: 'network-only',
+      //     errorPolicy: 'all'
+      //   }
+      // }
     });
   }
 }

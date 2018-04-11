@@ -10,6 +10,7 @@ import { AddTransactionInput } from '../../core/services/transaction/transaction
 import { Apollo } from 'apollo-angular';
 import { VendorService, UserService, TransactionService } from '@app/services';
 import { Transaction } from '@app/models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-activity-area',
@@ -25,7 +26,8 @@ export class ActivityAreaComponent extends BaseComponent implements OnInit {
     private vendorService: VendorService,
     private userService: UserService,
     private transactionService: TransactionService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) { super(); }
   openDialog(): void {
     const dialogRef = this.dialog.open(TransactionFormComponent, {
@@ -36,7 +38,7 @@ export class ActivityAreaComponent extends BaseComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.transactionService.addTransaction(result).subscribe(transaction => {
-          this.transactions = [transaction, ...this.transactions];
+          this.router.navigate(['/transaction', transaction.id]);
         })
       }
     });
@@ -44,14 +46,11 @@ export class ActivityAreaComponent extends BaseComponent implements OnInit {
 
   ngOnInit() {
     this.getTransactions();
-
   }
 
   getTransactions() {
     this.transactionService.getTransactions().subscribe(transactions => {
-      this.transactions = transactions;
-      console.log(this.transactions);
-
+      this.transactions = [...transactions].reverse();
     });
   }
 }

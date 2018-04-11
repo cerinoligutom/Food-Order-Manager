@@ -82,7 +82,7 @@ export class TransactionComponent extends BaseComponent implements OnInit {
       });
 
       this.orderService.getOrdersByTransaction(params['id']).subscribe(transactionOrders => {
-        this.transactionOrders = transactionOrders;
+        this.transactionOrders = [...transactionOrders].reverse();
 
         this.transactionSummary = this.formatTransactionSummaryData(transactionOrders);
         console.log('summary:', this.transactionSummary);
@@ -102,7 +102,8 @@ export class TransactionComponent extends BaseComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(order => {
       if (order) {
-        this.transactionOrders = [...this.transactionOrders, order];
+        this.transactionOrders = [...this.transactionOrders, order].reverse();
+        this.transactionSummary = this.formatTransactionSummaryData(this.transactionOrders);
       }
     });
   }

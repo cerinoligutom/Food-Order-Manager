@@ -19,6 +19,7 @@ export const AddOrderMutation = gql`
        id
        username
        image
+       full_name
      }
      Transaction {
        id

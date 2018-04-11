@@ -90,6 +90,7 @@ export const GetTransactionOrders = gql`
             image
             price
           }
+          comment
           quantity
         }
       }
