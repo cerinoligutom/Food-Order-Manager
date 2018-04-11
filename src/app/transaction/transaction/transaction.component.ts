@@ -15,12 +15,12 @@ class TransactionFactory {
     const productData = {};
 
     for (let order of orders) {
-      if (order.comment) {
-        commentData.push({
-          user: order.User,
-          comment: order.comment
-        });
-      }
+      // if (order.comment) {
+      //   commentData.push({
+      //     user: order.User,
+      //     comment: order.comment
+      //   });
+      // }
 
       for (let orderItem of order.OrderItems) {
         if (productData[orderItem.Product.id]) {

@@ -36,10 +36,10 @@
                 </div>
               </mat-list-item>
             </mat-list>
-            <div class="comment-container" *ngIf="order.comment">
+            <!-- <div class="comment-container" *ngIf="order.comment">
               <h3>Comments:</h3>
               <span>{{ order.comment }}</span>
-            </div>
+            </div> -->
             <div class="total-sum-container">
               <h2>₱ {{ calculateTotalSum(order.OrderItems) | number:'.2'}}</h2>
             </div>

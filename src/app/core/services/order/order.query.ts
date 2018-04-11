@@ -9,7 +9,6 @@ export const GetOrderQuery = gql`
   query getOrderQuery($orderId: ID!){
     Order(id: $orderId){
       id
-      comment
       OrderItems{
         id
         Product{

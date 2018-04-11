@@ -81,7 +81,6 @@ export const GetTransactionOrders = gql`
           nickname
           image
         }
-        comment
         isFullyPaid
         OrderItems {
           id

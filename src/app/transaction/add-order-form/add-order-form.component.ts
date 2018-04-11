@@ -15,7 +15,8 @@ class AddOrderFormFactory {
     return input.map(orderItem => {
       return {
         product_id: orderItem.product.id,
-        quantity: +orderItem.quantity
+        quantity: +orderItem.quantity,
+        comment: orderItem.comment
       };
     });
   }
@@ -24,6 +25,7 @@ class AddOrderFormFactory {
 interface OrderItemInput {
   product: Product;
   quantity: number;
+  comment: string;
 }
 
 @Component({
@@ -44,8 +46,6 @@ export class AddOrderFormComponent extends BaseComponent implements OnInit {
   addOrderFormFactory = new AddOrderFormFactory();
 
   addOrderInput: AddOrderInput;
-
-  orderComment: string;
 
   hasOrdered: boolean = false;
 
@@ -97,7 +97,8 @@ export class AddOrderFormComponent extends BaseComponent implements OnInit {
   initAddOrderItemInput() {
     this.addOrderItemInput = {
       product: undefined,
-      quantity: 1
+      quantity: 1,
+      comment: ''
     };
 
     this.productCtrl.setValue('');
@@ -107,8 +108,7 @@ export class AddOrderFormComponent extends BaseComponent implements OnInit {
     this.addOrderInput = {
       user_id: this.currentLoggedInUser.id,
       transaction_id: this.data.transactionId,
-      orderItems: this.addOrderFormFactory.toAddOrderItemInput(this.orderItems),
-      comment: this.orderComment
+      orderItems: this.addOrderFormFactory.toAddOrderItemInput(this.orderItems)
     }
 
     this.orderService.addOrder(this.addOrderInput).subscribe(result => {
