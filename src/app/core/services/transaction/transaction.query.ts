@@ -85,11 +85,6 @@ export const GetTransactionOrders = gql`
         isFullyPaid
         OrderItems {
           id
-          Order{
-            id
-            comment
-            isFullyPaid
-          }
           Product {
             id
             name

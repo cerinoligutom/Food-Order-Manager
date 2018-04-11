@@ -31,14 +31,14 @@
       display: flex;
       flex-direction: column;
     }
-
-    .total-sum-container {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      color: $red;
-    }
   }
+}
+
+.total-sum-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: $red;
 }
 
 .order-item-container {
@@ -50,4 +50,10 @@
     margin-left: 10px;
     justify-content: space-evenly;
   }
+}
+
+.summary-comment-container {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
 }

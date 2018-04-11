@@ -10,7 +10,47 @@ class TransactionFactory {
   formatTransactionSummaryData(orders: Order[]) {
     // TODO:
     // Restructure data for summary
-    return {};
+
+    const commentData = [];
+    const productData = {};
+
+    for (let order of orders) {
+      if (order.comment) {
+        commentData.push({
+          user: order.User,
+          comment: order.comment
+        });
+      }
+
+      for (let orderItem of order.OrderItems) {
+        if (productData[orderItem.Product.id]) {
+          productData[orderItem.Product.id].quantity += orderItem.quantity;
+        } else {
+          productData[orderItem.Product.id] = {
+            ...orderItem.Product,
+            quantity: orderItem.quantity
+          };
+        }
+      }
+    }
+
+    let products = [];
+
+    for (let productId in productData) {
+      products.push(productData[productId]);
+    }
+
+    return {
+      products: products,
+      comments: commentData,
+      sum: this.calculateTotalSum(products)
+    };
+  }
+
+  private calculateTotalSum(products: any[]) {
+    return products.reduce((sum, product) => {
+      return sum += product.price * product.quantity
+    }, 0)
   }
 }
 
@@ -26,6 +66,8 @@ export class TransactionComponent extends BaseComponent implements OnInit {
 
   transactionFactory = new TransactionFactory();
 
+  transactionSummary: any = {};
+
   constructor(
     private route: ActivatedRoute,
     private transactionService: TransactionService,
@@ -36,12 +78,14 @@ export class TransactionComponent extends BaseComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.transactionService.getTransaction(params['id']).subscribe(transaction => {
-        console.log('transaction ', transaction);
         this.transaction = transaction;
       });
 
       this.orderService.getOrdersByTransaction(params['id']).subscribe(transactionOrders => {
         this.transactionOrders = transactionOrders;
+
+        this.transactionSummary = this.formatTransactionSummaryData(transactionOrders);
+        console.log('summary:', this.transactionSummary);
       })
     });
 
@@ -64,7 +108,6 @@ export class TransactionComponent extends BaseComponent implements OnInit {
   }
 
   calculateTotalSum(orderItems) {
-    console.log('orderItems:', orderItems);
     return orderItems.reduce((sum, orderItem) => {
       return orderItem.Product.price * orderItem.quantity
     }, 0);

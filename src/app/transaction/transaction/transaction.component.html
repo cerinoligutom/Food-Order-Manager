@@ -22,8 +22,8 @@
             <mat-card-subtitle>{{ formatDates(order.created_at.raw).shortDate }} {{ formatDates(order.created_at.raw).time }}</mat-card-subtitle>
           </mat-card-header>
           <mat-card-content>
-            <mat-list *ngFor="let orderItem of order.OrderItems">
-              <mat-list-item>
+            <mat-list>
+              <mat-list-item *ngFor="let orderItem of order.OrderItems">
                 <div class="order-item-container">
                   <div class="img-container">
                     <img [src]="orderItem.Product.image || defaultProductImage" alt="{{ orderItem.Product.name }} image" class="product-image">
@@ -59,7 +59,22 @@
           <mat-card-subtitle>{{ transaction?.Host.nickname }}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-          Summary
+          <mat-list>
+            <mat-list-item *ngFor="let product of transactionSummary.products">
+              <div class="order-item-container">
+                <div class="img-container">
+                  <img [src]="product.image || defaultProductImage" alt="{{ product.name }} image" class="product-image">
+                </div>
+                <div class="order-item-details">
+                  <span>{{ product.name }}</span>
+                  <span>₱ {{ product.price | number: '.2' }} x {{ product.quantity }}{{ (product.quantity > 1) ? 'pcs': 'pc' }}</span>
+                </div>
+              </div>
+            </mat-list-item>
+            <div class="total-sum-container">
+              <h2>₱ {{ transactionSummary.sum | number:'.2'}}</h2>
+            </div>
+          </mat-list>
         </mat-card-content>
         <mat-card-actions>
         </mat-card-actions>
