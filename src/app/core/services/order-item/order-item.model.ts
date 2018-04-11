@@ -5,6 +5,7 @@ export interface OrderItem{
   Order: Order;
   Product: Product;
   quantity: number;
+  comment: string;
   is_cancelled: boolean;
   created_at: ScalarDate
 }
@@ -13,9 +14,11 @@ export interface AddOrderItemInput{
   order_id: string;
   product_id: string;
   quantity: number;
+  comment: string;
 }
 
 export interface AddInitialOrderItemInput{
   product_id: string;
   quantity: number;
+  comment: string;
 }
