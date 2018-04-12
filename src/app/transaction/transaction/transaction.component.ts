@@ -11,7 +11,6 @@ class TransactionFactory {
     // TODO:
     // Restructure data for summary
 
-    const commentData = [];
     const productData = {};
 
     for (let order of orders) {
@@ -28,8 +27,13 @@ class TransactionFactory {
         } else {
           productData[orderItem.Product.id] = {
             ...orderItem.Product,
-            quantity: orderItem.quantity
+            quantity: orderItem.quantity,
+            comments: []
           };
+        }
+
+        if (orderItem.comment) {
+          productData[orderItem.Product.id].comments.push(orderItem.comment);
         }
       }
     }
@@ -42,7 +46,6 @@ class TransactionFactory {
 
     return {
       products: products,
-      comments: commentData,
       sum: this.calculateTotalSum(products)
     };
   }

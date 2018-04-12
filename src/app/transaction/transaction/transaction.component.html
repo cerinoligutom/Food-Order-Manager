@@ -23,15 +23,20 @@
           </mat-card-header>
           <mat-card-content>
             <mat-list>
-              <mat-list-item *ngFor="let orderItem of order.OrderItems">
-                <div class="order-item-container">
-                  <div class="img-container">
-                    <img [src]="orderItem.Product.image || defaultProductImage" alt="{{ orderItem.Product.name }} image" class="product-image">
+              <mat-list-item *ngFor="let orderItem of order.OrderItems" class="order-item-container">
+                <div class="column">
+                  <div class="order-item">
+                    <div class="img-container">
+                      <img [src]="orderItem.Product.image || defaultProductImage" alt="{{ orderItem.Product.name }} image" class="product-image">
+                    </div>
+                    <div class="order-item-details">
+                      <span>{{ orderItem.Product.name }}</span>
+                      <span>₱ {{ orderItem.Product.price | number: '.2' }} x {{ orderItem.quantity }}{{ (orderItem.quantity > 1)
+                        ? 'pcs': 'pc' }}</span>
+                    </div>
                   </div>
-                  <div class="order-item-details">
-                    <span>{{ orderItem.Product.name }}</span>
-                    <span>₱ {{ orderItem.Product.price | number: '.2' }} x {{ orderItem.quantity }}{{ (orderItem.quantity > 1)
-                      ? 'pcs': 'pc' }}</span>
+                  <div class="order-item-comments" *ngIf="orderItem.comment">
+                    <span class="comment-text">Comment:</span>{{ orderItem.comment }}
                   </div>
                 </div>
               </mat-list-item>
@@ -56,20 +61,36 @@
         <mat-card-header>
           <img mat-card-avatar [src]="transaction?.Host.image || defaultUserImage" alt="{{ transaction?.Host.name }} image">
           <mat-card-title>{{ transaction?.Host.full_name }}</mat-card-title>
-          <mat-card-subtitle>{{ transaction?.Host.nickname }}</mat-card-subtitle>
+          <mat-card-subtitle>Host</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
           <mat-list>
-            <mat-list-item *ngFor="let product of transactionSummary.products">
-              <div class="order-item-container">
-                <div class="img-container">
-                  <img [src]="product.image || defaultProductImage" alt="{{ product.name }} image" class="product-image">
+            <mat-list-item *ngFor="let product of transactionSummary.products" class="order-item-container">
+              <div class="column">
+                <div class="order-item">
+                  <div class="img-container">
+                    <img [src]="product.image || defaultProductImage" alt="{{ product.name }} image" class="product-image">
+                  </div>
+                  <div class="order-item-details">
+                    <span>
+                      <strong>{{ product.name }}</strong>
+                    </span>
+                    <span>₱ {{ product.price | number: '.2' }} x
+                      <strong>{{ product.quantity }}{{ (product.quantity > 1) ? 'pcs': 'pc' }}
+                      </strong>
+                    </span>
+                  </div>
                 </div>
-                <div class="order-item-details">
-                  <span>{{ product.name }}</span>
-                  <span>₱ {{ product.price | number: '.2' }} x {{ product.quantity }}{{ (product.quantity > 1) ? 'pcs': 'pc' }}</span>
+                <div class="order-item-comments" *ngIf="product.comments.length > 0">
+                  <span class="comment-text">Comments:</span>
+                  <ul class="comment-list">
+                    <li *ngFor="let comment of product.comments">
+                      {{ comment }}
+                    </li>
+                  </ul>
                 </div>
               </div>
+              <mat-divider></mat-divider>
             </mat-list-item>
             <div class="total-sum-container">
               <h2>₱ {{ transactionSummary.sum | number:'.2'}}</h2>

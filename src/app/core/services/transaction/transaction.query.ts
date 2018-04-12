@@ -92,6 +92,7 @@ export const GetTransactionOrders = gql`
           }
           comment
           quantity
+          comment
         }
       }
     }
