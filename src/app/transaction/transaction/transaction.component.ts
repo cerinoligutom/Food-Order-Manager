@@ -141,13 +141,15 @@ export class TransactionComponent extends BaseComponent implements OnInit {
     dialogRef.afterClosed().subscribe(orderItem => {
       if(orderItem){
         this.orderItemService.editOrderItem(orderItem).subscribe(result => {
-          console.log(result);
+          console.log('edited', result);
         });
       }
     });
   }
 
-  cancelOrderItem(){
-    alert('cancel');
+  cancelOrderItem(orderItemId){
+    this.orderItemService.cancelOrderItem(orderItemId).subscribe(result => {
+      console.log('canceled', result);
+    });
   }
 }

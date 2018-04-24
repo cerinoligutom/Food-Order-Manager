@@ -7,17 +7,18 @@ import {
 import { map } from "rxjs/operators";
 import {
   OrderItemMutationResponse,
-  EditOrderItemMutation
+  EditOrderItemMutation,
+  CancelOrderItemMutation
 } from "./order-item.mutation";
 import { EditOrderItemInput } from "@app/models";
 
 class OrderItemFactory {
-  toEditOrderItemRequest(orderItem: EditOrderItemInput){
+  toEditOrderItemRequest(orderItem: EditOrderItemInput) {
     return {
       id: orderItem.id,
       quantity: orderItem.quantity,
       comment: orderItem.comment
-    }
+    };
   }
 }
 
@@ -47,7 +48,20 @@ export class OrderItemService {
       .mutate<OrderItemMutationResponse>({
         mutation: EditOrderItemMutation,
         variables: {
-          editOrderItemInput: this.orderItemFactory.toEditOrderItemRequest(input)
+          editOrderItemInput: this.orderItemFactory.toEditOrderItemRequest(
+            input
+          )
+        }
+      })
+      .pipe(map(result => result.data.OrderItem));
+  }
+
+  cancelOrderItem(orderItemId) {
+    return this.apollo
+      .mutate<OrderItemMutationResponse>({
+        mutation: CancelOrderItemMutation,
+        variables: {
+          orderItemId: orderItemId
         }
       })
       .pipe(map(result => result.data.OrderItem));
