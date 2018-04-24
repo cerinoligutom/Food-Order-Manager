@@ -21,11 +21,14 @@ export class OrderService {
     return this.apollo
       .watchQuery<GetTransactionOrdersQueryResponse>({
         query: GetTransactionOrders,
+        fetchPolicy: "cache-and-network",
         variables: {
           transactionId: transactionId
         }
       })
-      .valueChanges.pipe(map(result => result.data.Transaction.Orders));
+      .valueChanges.pipe(
+      map(result => result.data ? result.data.Transaction.Orders : [])
+    );
   }
 
   getOrder(orderId) {

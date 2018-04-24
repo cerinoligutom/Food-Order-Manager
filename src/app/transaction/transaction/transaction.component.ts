@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TransactionService, OrderService, OrderItemService } from '@app/services';
 import { BaseComponent } from '@app/components';
 import { Order } from '@app/models';
@@ -77,7 +77,8 @@ export class TransactionComponent extends BaseComponent implements OnInit {
     private transactionService: TransactionService,
     private orderService: OrderService,
     private orderItemService: OrderItemService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) { super(); }
 
   ngOnInit() {
@@ -147,9 +148,14 @@ export class TransactionComponent extends BaseComponent implements OnInit {
     });
   }
 
-  cancelOrderItem(orderItemId){
+  cancelOrderItem(orderItemId, order){
+    console.log('order items cancel', order);
     this.orderItemService.cancelOrderItem(orderItemId).subscribe(result => {
-      console.log('canceled', result);
+      order.OrderItems.filter( orderItem => orderItem.id !== orderItemId);
+      // todo upon conversion to component modify received order items input
+      // for now retrieve from api
+
+      this.ngOnInit();
     });
   }
 }
