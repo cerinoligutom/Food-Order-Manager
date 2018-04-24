@@ -51,6 +51,8 @@ export class AddOrderFormComponent extends BaseComponent implements OnInit {
 
   sortedData;
 
+  calculatedTotalSum = 0;
+
   constructor(
     public dialogRef: MatDialogRef<AddOrderFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -90,6 +92,7 @@ export class AddOrderFormComponent extends BaseComponent implements OnInit {
 
   addToOrderItemsList() {
     this.orderItems.push(this.addOrderItemInput);
+    this.calculatedTotalSum = this.calculateTotalSum();
     this.initAddOrderItemInput();
     this.hasOrdered = true;
   }
@@ -147,7 +150,7 @@ export class AddOrderFormComponent extends BaseComponent implements OnInit {
 
   calculateTotalSum() {
     return this.orderItems.reduce((sum, orderItem) => {
-      return orderItem.product.price * orderItem.quantity
+      return sum += orderItem.product.price * orderItem.quantity
     }, 0);
   }
 }

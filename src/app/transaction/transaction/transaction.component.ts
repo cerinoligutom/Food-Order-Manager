@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { TransactionService, OrderService, OrderItemService } from '@app/services';
-import { BaseComponent } from '@app/components';
-import { Order } from '@app/models';
-import { MatDialog } from '@angular/material';
-import { AddOrderFormComponent } from '../add-order-form/add-order-form.component';
-import { EditOrderItemFormComponent } from '../edit-order-item-form/edit-order-item-form.component';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import {
+  TransactionService,
+  OrderService,
+  OrderItemService
+} from "@app/services";
+import { BaseComponent } from "@app/components";
+import { Order } from "@app/models";
+import { MatDialog } from "@angular/material";
+import { AddOrderFormComponent } from "../add-order-form/add-order-form.component";
+import { EditOrderItemFormComponent } from "../edit-order-item-form/edit-order-item-form.component";
 
 class TransactionFactory {
   formatTransactionSummaryData(orders: Order[]) {
@@ -53,18 +57,17 @@ class TransactionFactory {
 
   private calculateTotalSum(products: any[]) {
     return products.reduce((sum, product) => {
-      return sum += product.price * product.quantity
-    }, 0)
+      return (sum += product.price * product.quantity);
+    }, 0);
   }
 }
 
 @Component({
-  selector: 'app-transaction',
-  templateUrl: './transaction.component.html',
-  styleUrls: ['./transaction.component.scss']
+  selector: "app-transaction",
+  templateUrl: "./transaction.component.html",
+  styleUrls: ["./transaction.component.scss"]
 })
 export class TransactionComponent extends BaseComponent implements OnInit {
-
   transaction: any;
   transactionOrders: Order[];
 
@@ -79,27 +82,34 @@ export class TransactionComponent extends BaseComponent implements OnInit {
     private orderItemService: OrderItemService,
     public dialog: MatDialog,
     private router: Router
-  ) { super(); }
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.transactionService.getTransaction(params['id']).subscribe(transaction => {
-        this.transaction = transaction;
-      });
+      this.transactionService
+        .getTransaction(params["id"])
+        .subscribe(transaction => {
+          this.transaction = transaction;
+        });
 
-      this.orderService.getOrdersByTransaction(params['id']).subscribe(transactionOrders => {
-        this.transactionOrders = [...transactionOrders].reverse();
+      this.orderService
+        .getOrdersByTransaction(params["id"])
+        .subscribe(transactionOrders => {
+          this.transactionOrders = [...transactionOrders].reverse();
 
-        this.transactionSummary = this.formatTransactionSummaryData(transactionOrders);
-        console.log('summary:', this.transactionSummary);
-      })
+          this.transactionSummary = this.formatTransactionSummaryData(
+            transactionOrders
+          );
+          console.log("summary:", this.transactionSummary);
+        });
     });
-
   }
 
   openAddOrderDialog(transactionId, vendorId) {
     const dialogRef = this.dialog.open(AddOrderFormComponent, {
-      width: '1200px',
+      width: "1200px",
       data: {
         transactionId: transactionId,
         vendorId: vendorId
@@ -109,14 +119,16 @@ export class TransactionComponent extends BaseComponent implements OnInit {
     dialogRef.afterClosed().subscribe(order => {
       if (order) {
         this.transactionOrders = [...this.transactionOrders, order].reverse();
-        this.transactionSummary = this.formatTransactionSummaryData(this.transactionOrders);
+        this.transactionSummary = this.formatTransactionSummaryData(
+          this.transactionOrders
+        );
       }
     });
   }
 
   calculateTotalSum(orderItems) {
     return orderItems.reduce((sum, orderItem) => {
-      return orderItem.Product.price * orderItem.quantity
+      return orderItem.Product.price * orderItem.quantity;
     }, 0);
   }
 
@@ -124,37 +136,38 @@ export class TransactionComponent extends BaseComponent implements OnInit {
     return this.transactionFactory.formatTransactionSummaryData(orders);
   }
 
-  cancelOrder(orderId){
-    this.orderService.cancelOrder(orderId).subscribe( result => {
-      console.log('cancel order', result);
+  cancelOrder(orderId) {
+    this.orderService.cancelOrder(orderId).subscribe(result => {
+      console.log("cancel order", result);
+      // todo upon conversion to component modify received order items input
+      // for now retrieve from api
+      this.ngOnInit();
     });
   }
 
-  showEditOrderItemDialog(orderItemId){
-    console.log('show edit order item dialog ID = ',orderItemId);
+  showEditOrderItemDialog(orderItemId) {
+    console.log("show edit order item dialog ID = ", orderItemId);
     const dialogRef = this.dialog.open(EditOrderItemFormComponent, {
-      width: '720px',
-      data:{
+      width: "720px",
+      data: {
         orderItemId: orderItemId
       }
     });
 
     dialogRef.afterClosed().subscribe(orderItem => {
-      if(orderItem){
+      if (orderItem) {
         this.orderItemService.editOrderItem(orderItem).subscribe(result => {
-          console.log('edited', result);
+          console.log("edited", result);
         });
       }
     });
   }
 
-  cancelOrderItem(orderItemId, order){
-    console.log('order items cancel', order);
+  cancelOrderItem(orderItemId, order) {
+    console.log("order items cancel", order);
     this.orderItemService.cancelOrderItem(orderItemId).subscribe(result => {
-      order.OrderItems.filter( orderItem => orderItem.id !== orderItemId);
       // todo upon conversion to component modify received order items input
       // for now retrieve from api
-
       this.ngOnInit();
     });
   }
