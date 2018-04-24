@@ -50,3 +50,27 @@ export const GetUserQuery = gql`
     }
   }
 `;
+
+export const GetUserOrdersQuery = gql`
+query GetUserOrders($id: ID!) {
+  User(id: $id) {
+    id
+    Orders {
+      id
+      created_at
+      Transaction {
+        id
+      }
+      OrderItems {
+        id
+        quantity
+        Product {
+          id
+          name
+          image
+        }
+      }
+    }
+  }
+}
+`;

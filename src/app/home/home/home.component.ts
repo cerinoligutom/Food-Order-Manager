@@ -13,7 +13,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
 
   routes = [
     { name: 'Dashboard', path: ['/dashboard/activity'] },
-    { name: 'Statistics', path: ['/statistics'] },
+    // { name: 'Statistics', path: ['/statistics'] },
     { name: 'Admin', path: ['/admin'] }
   ];
 

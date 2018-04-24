@@ -1,4 +1,4 @@
-import { ScalarDate } from '../models';
+import { ScalarDate, Order } from '../models';
 
 export interface User {
   id: string;
@@ -17,4 +17,5 @@ export interface User {
   created_at: ScalarDate;
   is_active: boolean;
   last_active: boolean;
+  Orders: [Order]
 }

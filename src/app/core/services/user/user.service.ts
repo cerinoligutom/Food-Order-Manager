@@ -3,11 +3,12 @@ import { map } from 'rxjs/operators';
 import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs/Observable';
 
-import { User } from '../models';
+import { User, Order } from '../models';
 import {
   UserQueryResponse,
   GetCurrentLoggedInUserQuery,
-  GetUserQuery
+  GetUserQuery,
+  GetUserOrdersQuery
 } from './user.query';
 import {
   EditUserInput, EditUserMutation
@@ -58,6 +59,17 @@ export class UserService {
       }
     }).pipe(
       map(result => result.data.User)
+    );
+  }
+
+  getUserOrders(id: string): Observable<[Order]> {
+    return this.apollo.watchQuery<UserQueryResponse>({
+      query: GetUserOrdersQuery,
+      variables: {
+        id: id
+      }
+    }).valueChanges.pipe(
+      map(result => result.data.User.Orders)
     );
   }
 }

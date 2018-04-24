@@ -21,9 +21,9 @@
     </mat-card-actions>
   </mat-card>
 
-  <div class="users-container col-md-6">
+  <div class="users-container col-md-5">
     <mat-card class="arrow_box user-container" *ngIf="timelineItem.Orders.length > 0">
-      <mat-card-header *ngFor="let order of timelineItem.Orders">
+      <mat-card-header *ngFor="let order of timelineItem.Orders | slice:0:10" class="col-md-12">
         <img mat-card-avatar [src]="order.User.image || defaultUserImage" alt="{{ order.User.username }} image">
         <mat-card-title>{{ order.User.full_name }}</mat-card-title>
         <mat-card-subtitle>{{ formatDates(order.created_at.raw).shortDate }} {{ formatDates(order.created_at.raw).time }}</mat-card-subtitle>

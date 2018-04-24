@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '@app/services';
-import { User } from '@app/models';
+import { User, Order } from '@app/models';
 import { EditUserInput } from '../../core/services/user/user.mutation';
 import { BaseComponent } from '@app/components';
 
@@ -14,10 +14,12 @@ export class UserProfileComponent extends BaseComponent implements OnInit {
   user: User;
   editProfileFormData: EditUserInput;
   isCurrentLoggedInUser = false;
+  orders: Order[] = [];
 
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) { super(); }
 
   ngOnInit() {
@@ -27,11 +29,17 @@ export class UserProfileComponent extends BaseComponent implements OnInit {
           this.user = user;
           this.populateEditProfileForm(user);
         });
+        this.userService.getUserOrders(params['id']).subscribe(orders => {
+          this.orders = orders;
+        });
       } else {
         this.userService.getCurrentLoggedInUser().subscribe(user => {
           this.user = user;
           this.isCurrentLoggedInUser = true;
           this.populateEditProfileForm(user);
+        });
+        this.userService.getUserOrders(this.currentLoggedInUser.id).subscribe(orders => {
+          this.orders = [...orders].reverse();
         });
       }
     });
@@ -55,5 +63,9 @@ export class UserProfileComponent extends BaseComponent implements OnInit {
     if (user.birthdate && user.birthdate.raw) {
       this.editProfileFormData.birthdate = new Date(user.birthdate.raw);
     }
+  }
+
+  goToTransaction(transactionId: string) {
+    this.router.navigate(['/transaction', transactionId]);
   }
 }
