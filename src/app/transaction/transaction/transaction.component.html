@@ -13,19 +13,20 @@
     </div>
   </div>
   <div class="row order-row">
-    <div class="col-md-8 order-items-panel">
-      <div class="col-md-6" *ngFor="let order of transactionOrders">
+    <div class="col-md-8 order-items-panel card-columns">
+      <div class="col-md-6 card" *ngFor="let order of transactionOrders">
         <mat-card>
           <mat-card-header>
             <img mat-card-avatar [src]="order.User.image || defaultUserImage" alt="{{ order.User.name }} image">
             <mat-card-title>{{ order.User.full_name }}</mat-card-title>
             <mat-card-subtitle>{{ formatDates(order.created_at.raw).shortDate }} {{ formatDates(order.created_at.raw).time }}</mat-card-subtitle>
+            <button mat-raised-button color="warn" (click)="cancelOrder(order.id)">Cancel</button>
           </mat-card-header>
           <mat-card-content>
             <mat-list>
               <mat-list-item *ngFor="let orderItem of order.OrderItems" class="order-item-container">
                 <div class="column">
-                  <div class="order-item">
+                  <div class="order-item" >
                     <div class="img-container">
                       <img [src]="orderItem.Product.image || defaultProductImage" alt="{{ orderItem.Product.name }} image" class="product-image">
                     </div>
@@ -39,12 +40,16 @@
                     <span class="comment-text">Comment:</span>{{ orderItem.comment }}
                   </div>
                 </div>
+                <div class="order-item-actions" *ngIf="currentLoggedInUser.id === order.User.id">
+                    <button mat-icon-button class="edit" (click)="showEditOrderItemDialog(orderItem.id)">
+                        <mat-icon>mode_edit</mat-icon>
+                    </button>
+                    <button mat-icon-button class="cancel" (click)="cancelOrderItem(orderItem.id)">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
               </mat-list-item>
             </mat-list>
-            <!-- <div class="comment-container" *ngIf="order.comment">
-              <h3>Comments:</h3>
-              <span>{{ order.comment }}</span>
-            </div> -->
             <div class="total-sum-container">
               <h2>₱ {{ calculateTotalSum(order.OrderItems) | number:'.2'}}</h2>
             </div>

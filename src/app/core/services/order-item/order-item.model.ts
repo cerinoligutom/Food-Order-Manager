@@ -22,3 +22,9 @@ export interface AddInitialOrderItemInput{
   quantity: number;
   comment: string;
 }
+
+export interface EditOrderItemInput {
+  id: string;
+  quantity: number;
+  comment: string;
+}

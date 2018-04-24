@@ -6,6 +6,7 @@ import { TransactionFormComponent } from './transaction-form/transaction-form.co
 import { SharedModule } from '../shared/shared.module';
 import { TransactionComponent } from './transaction/transaction.component';
 import { AddOrderFormComponent } from './add-order-form/add-order-form.component';
+import { EditOrderItemFormComponent } from './edit-order-item-form/edit-order-item-form.component';
 
 
 @NgModule({
@@ -13,7 +14,7 @@ import { AddOrderFormComponent } from './add-order-form/add-order-form.component
     SharedModule,
     TransactionRoutingModule
   ],
-  declarations: [TransactionFormComponent, TransactionComponent, AddOrderFormComponent],
-  entryComponents: [AddOrderFormComponent]
+  declarations: [TransactionFormComponent, TransactionComponent, AddOrderFormComponent, EditOrderItemFormComponent],
+  entryComponents: [AddOrderFormComponent, EditOrderItemFormComponent]
 })
 export class TransactionModule { }

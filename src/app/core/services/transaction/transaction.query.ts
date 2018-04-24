@@ -84,6 +84,7 @@ export const GetTransactionOrders = gql`
         isFullyPaid
         OrderItems {
           id
+          is_cancelled
           Product {
             id
             name
@@ -92,7 +93,6 @@ export const GetTransactionOrders = gql`
           }
           comment
           quantity
-          comment
         }
       }
     }

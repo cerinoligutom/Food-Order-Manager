@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { TransactionService, OrderService } from '@app/services';
+import { TransactionService, OrderService, OrderItemService } from '@app/services';
 import { BaseComponent } from '@app/components';
 import { Order } from '@app/models';
 import { MatDialog } from '@angular/material';
 import { AddOrderFormComponent } from '../add-order-form/add-order-form.component';
+import { EditOrderItemFormComponent } from '../edit-order-item-form/edit-order-item-form.component';
 
 class TransactionFactory {
   formatTransactionSummaryData(orders: Order[]) {
@@ -75,6 +76,7 @@ export class TransactionComponent extends BaseComponent implements OnInit {
     private route: ActivatedRoute,
     private transactionService: TransactionService,
     private orderService: OrderService,
+    private orderItemService: OrderItemService,
     public dialog: MatDialog
   ) { super(); }
 
@@ -119,5 +121,33 @@ export class TransactionComponent extends BaseComponent implements OnInit {
 
   formatTransactionSummaryData(orders: Order[] = this.transactionOrders) {
     return this.transactionFactory.formatTransactionSummaryData(orders);
+  }
+
+  cancelOrder(orderId){
+    this.orderService.cancelOrder(orderId).subscribe( result => {
+      console.log('cancel order', result);
+    });
+  }
+
+  showEditOrderItemDialog(orderItemId){
+    console.log('show edit order item dialog ID = ',orderItemId);
+    const dialogRef = this.dialog.open(EditOrderItemFormComponent, {
+      width: '720px',
+      data:{
+        orderItemId: orderItemId
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(orderItem => {
+      if(orderItem){
+        this.orderItemService.editOrderItem(orderItem).subscribe(result => {
+          console.log(result);
+        });
+      }
+    });
+  }
+
+  cancelOrderItem(){
+    alert('cancel');
   }
 }

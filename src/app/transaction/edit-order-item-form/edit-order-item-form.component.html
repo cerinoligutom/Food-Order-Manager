@@ -1,0 +1,51 @@
+<div class="order-items-table-container">
+  <table matSort (matSortChange)="sortData($event)">
+    <tr>
+      <th class="table-header" mat-sort-header="name">Product Name</th>
+      <th class="table-header" mat-sort-header="price">Price</th>
+      <th class="table-header" mat-sort-header="total">Sum</th>
+      <th class="table-header" mat-sort-header="quantity">Quantity</th>
+      <th class="table-header" mat-sort-header="comment" disabled="true">Comment</th>
+    </tr>
+
+    <tr>
+      <td>
+        <div>
+          <img [src]="orderItem.Product?.image || defaultProductImage" alt="" class="product-image">
+          <span class="product-name">{{ orderItem.Product?.name }}</span>
+        </div>
+      </td>
+      <td>
+        <div>
+          <span>₱ {{ orderItem.Product?.price | number:'.2' }}</span>
+        </div>
+      </td>
+      <td>
+        <div>
+          <span>₱ {{ orderItem.Product?.price * orderItem.quantity | number:'.2' }}</span>
+        </div>
+      </td>
+      <td>
+        <div>
+          <button mat-icon-button color="primary" [disabled]="orderItem.quantity === 1" (click)="decrementQuantity(orderItem)">
+            <mat-icon>remove</mat-icon>
+          </button>
+          <div>
+            {{ orderItem.quantity }}
+          </div>
+          <button mat-icon-button color="primary" (click)="incrementQuantity(orderItem)">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </td>
+      <td>
+        <div>
+          <custom-input name="comment" [(ngModel)]="orderItem.comment" type="text" placeholder="Comment"></custom-input>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <button mat-raised-button color="primary" (click)="updateOrderItem(orderItem)">
+    Update
+  </button>
+</div>
