@@ -22,7 +22,7 @@ class LoginForm {
 })
 export class LoginComponent implements OnInit, OnDestroy {
 
-  loginSubscription: Subscription;
+  loginSubscription: Subscription = new Subscription();
 
   constructor(
     private router: Router,
@@ -54,5 +54,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loginSubscription.unsubscribe();
   }
 
-
+  goToRegistrationPage() {
+    this.router.navigate(['/register']);
+  }
 }

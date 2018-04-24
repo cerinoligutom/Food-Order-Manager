@@ -22,7 +22,7 @@ class RegisterForm {
 })
 export class RegisterComponent implements OnInit, OnDestroy {
 
-  registerObservable: Subscription;
+  registerObservable: Subscription = new Subscription();
 
   constructor(private http: HttpClient) { }
 
