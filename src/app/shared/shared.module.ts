@@ -45,6 +45,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ChartsModule } from 'ng2-charts';
 import { TimelineComponent } from './timeline/timeline.component';
 import { TimelineItemComponent } from './timeline-item/timeline-item.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   imports: [
@@ -111,12 +112,17 @@ import { TimelineItemComponent } from './timeline-item/timeline-item.component';
     // App
     CustomInputComponent,
     TimelineComponent,
-    TimelineItemComponent
+    TimelineItemComponent,
+    ConfirmationDialogComponent
   ],
   declarations: [
     CustomInputComponent,
     TimelineComponent,
-    TimelineItemComponent
+    TimelineItemComponent,
+    ConfirmationDialogComponent
+  ],
+  entryComponents: [
+    ConfirmationDialogComponent
   ]
 })
 export class SharedModule { }

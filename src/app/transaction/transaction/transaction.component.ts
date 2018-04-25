@@ -10,6 +10,7 @@ import { Order } from "@app/models";
 import { MatDialog } from "@angular/material";
 import { AddOrderFormComponent } from "../add-order-form/add-order-form.component";
 import { EditOrderItemFormComponent } from "../edit-order-item-form/edit-order-item-form.component";
+import { ConfirmationDialogComponent } from "../../shared/confirmation-dialog/confirmation-dialog.component";
 
 class TransactionFactory {
   formatTransactionSummaryData(orders: Order[]) {
@@ -139,10 +140,21 @@ export class TransactionComponent extends BaseComponent implements OnInit {
   }
 
   cancelOrder(orderId) {
-    this.orderService.cancelOrder(orderId).subscribe(result => {
-      // todo upon conversion to component modify received order items input
-      // for now retrieve from api
-      this.ngOnInit();
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: "400px",
+      data: {
+        message: "Are you sure you want to cancel your order?"
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.orderService.cancelOrder(orderId).subscribe(result => {
+          // todo upon conversion to component modify received order items input
+          // for now retrieve from api
+          this.ngOnInit();
+        });
+      }
     });
   }
 
@@ -166,25 +178,41 @@ export class TransactionComponent extends BaseComponent implements OnInit {
 
   cancelOrderItem(orderItemId, order) {
     console.log("order items cancel", order);
-    this.orderItemService.cancelOrderItem(orderItemId).subscribe(result => {
-      // todo upon conversion to component modify received order items input
-      // for now retrieve from api
-      this.ngOnInit();
+
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: "400px",
+      data: {
+        message: "Are you sure you want to remove this item?"
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.orderItemService.cancelOrderItem(orderItemId).subscribe(result => {
+          // todo upon conversion to component modify received order items input
+          // for now retrieve from api
+          this.ngOnInit();
+        });
+      }
     });
   }
 
-  isFullyPaid(orderId, isFullyPaid){
+  isFullyPaid(orderId, isFullyPaid) {
     isFullyPaid = !isFullyPaid;
-    this.orderService.changeOrderFullyPaidStatus(orderId, isFullyPaid).subscribe( result => {
-      console.log('is fully paid ', result);
-    });
+    this.orderService
+      .changeOrderFullyPaidStatus(orderId, isFullyPaid)
+      .subscribe(result => {
+        console.log("is fully paid ", result);
+      });
   }
 
-  changeTransactionStatus(transactionId, isFulfilled){
+  changeTransactionStatus(transactionId, isFulfilled) {
     isFulfilled = !isFulfilled;
 
-    this.transactionService.changeTransactionFulfilledStatus(transactionId, isFulfilled).subscribe( result => {
-      console.log('change transaction status', result);
-    });
+    this.transactionService
+      .changeTransactionFulfilledStatus(transactionId, isFulfilled)
+      .subscribe(result => {
+        console.log("change transaction status", result);
+      });
   }
 }
