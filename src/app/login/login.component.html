@@ -2,10 +2,20 @@
   <div class="login-content">
     <div class="form-container">
       <img src="/assets/logo.png">
+      <div class="info-container" *ngIf="fromRegistration">
+        <div class="item info">
+          <span>Please login with your username/email!</span>
+        </div>
+      </div>
+      <div class="info-container" *ngIf="errorMessage">
+        <div class="item error">
+          <span>{{ errorMessage }}</span>
+        </div>
+      </div>
       <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm.value)">
-        <custom-input name="username" [(ngModel)]="username" type="email" placeholder="Email" email required></custom-input>
+        <custom-input name="username" [(ngModel)]="username" type="text" placeholder="Email/Username" required></custom-input>
         <custom-input name="password" [(ngModel)]="password" type="password" placeholder="Password" required></custom-input>
-        <button mat-raised-button color="primary" type="submit">Login</button>
+        <button class="login-button" mat-raised-button color="primary" type="submit">Login</button>
       </form>
       <a class="register-link" (click)="goToRegistrationPage()">Don't have an account yet? Sign up now!</a>
     </div>

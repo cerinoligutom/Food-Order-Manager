@@ -1,0 +1,107 @@
+@import 'variables';
+
+.register-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: $purple;
+  background-size: 100% 100%;
+
+  .register-content:before {
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    background-color: $purple;
+    background-size: 100% 100%;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+
+    -webkit-filter: blur(2px);
+    -moz-filter: blur(2px);
+    -o-filter: blur(2px);
+    -ms-filter: blur(2px);
+    filter: blur(5px);
+  }
+
+  .register-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50vh;
+
+    background-color: rgba(255, 255, 255, 0.412);
+    margin: auto auto;
+    padding: 10px;
+    box-shadow: 0px 0px 11px 0px #7b7b7b;
+    .form-container {
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 15px;
+
+      img {
+        width: 155px;
+        align-items: right;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+      }
+
+      .form-header {
+        margin: 0;
+        margin-bottom: 20px;
+        color: $white;
+        text-shadow: 3px 3px 3px $purple;
+      }
+    }
+  }
+}
+
+.register-button {
+  margin-top: 24px;
+  border: 1px solid $purple;
+
+  &:hover:not([disabled]) {
+    color: $purple;
+    background-color: transparent;
+  }
+}
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  margin-bottom: 20px;
+  width: 100%;
+
+  .error-item {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 2px 0;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid lighten($red, 10%);
+    border-left: 4px solid $red;
+    background-color: lighten($red, 35%);
+
+    strong {
+      text-transform: capitalize;
+    }
+  }
+}

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http'
 
 import {
   MatAutocompleteModule,
@@ -52,6 +53,7 @@ import { TimelineItemComponent } from './timeline-item/timeline-item.component';
     FormsModule,
     CommonModule,
     ChartsModule,
+    HttpClientModule,
 
     // Material Design
     MatButtonModule,
@@ -70,6 +72,7 @@ import { TimelineItemComponent } from './timeline-item/timeline-item.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
 
     // Material Design
     MatAutocompleteModule,

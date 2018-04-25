@@ -1,5 +1,13 @@
-<div class="container">
-    <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm.value)">
+<div class="register-container">
+  <div class="register-content">
+    <div class="form-container">
+      <h2 class="form-header">Join Food Order Manager</h2>
+      <div class="error-container" *ngIf="errors.length > 0">
+        <div class="error-item" *ngFor="let error of errors">
+          <span><strong>{{ error.path + ': ' }}</strong>{{ error.message }}</span>
+        </div>
+      </div>
+      <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm.value)">
         <custom-input name="username" [(ngModel)]="username" type="text" placeholder="Username" required> </custom-input>
         <custom-input name="email" [(ngModel)]="email" type="email" placeholder="Email" email required> </custom-input>
         <custom-input name="password" [(ngModel)]="password" type="password" placeholder="Password" required> </custom-input>
@@ -7,15 +15,8 @@
         <custom-input name="middleName" [(ngModel)]="middleName" type="text" placeholder="Middle Name"> </custom-input>
         <custom-input name="lastName" [(ngModel)]="lastName" type="text" placeholder="Last Name" required> </custom-input>
 
-        <button mat-button type="submit">Register</button>
+        <button class="register-button" mat-raised-button color="primary" type="submit" [disabled]="!registerForm.valid">Register</button>
       </form>
+    </div>
+  </div>
 </div>
-
-
-
-<!-- let username = req.body.username;
-let email = req.body.email;
-let password = req.body.password;
-let firstName = req.body.firstName;
-let middleName = req.body.middleName;
-let lastName = req.body.lastName; -->
