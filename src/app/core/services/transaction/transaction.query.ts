@@ -18,6 +18,7 @@ export const GetTransactionQuery = gql`
     Transaction(id: $transactionId){
       id
       created_at
+      is_fulfilled
       Host{
         id
         username

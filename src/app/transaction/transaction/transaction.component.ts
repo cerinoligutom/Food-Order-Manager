@@ -69,6 +69,7 @@ class TransactionFactory {
 })
 export class TransactionComponent extends BaseComponent implements OnInit {
   transaction: any;
+  icon: string;
   transactionOrders: Order[];
 
   transactionFactory = new TransactionFactory();
@@ -103,6 +104,7 @@ export class TransactionComponent extends BaseComponent implements OnInit {
             transactionOrders
           );
           console.log("summary:", this.transactionSummary);
+          console.log("transaction orders ", this.transactionOrders);
         });
     });
   }
@@ -138,7 +140,6 @@ export class TransactionComponent extends BaseComponent implements OnInit {
 
   cancelOrder(orderId) {
     this.orderService.cancelOrder(orderId).subscribe(result => {
-      console.log("cancel order", result);
       // todo upon conversion to component modify received order items input
       // for now retrieve from api
       this.ngOnInit();
@@ -169,6 +170,21 @@ export class TransactionComponent extends BaseComponent implements OnInit {
       // todo upon conversion to component modify received order items input
       // for now retrieve from api
       this.ngOnInit();
+    });
+  }
+
+  isFullyPaid(orderId, isFullyPaid){
+    isFullyPaid = !isFullyPaid;
+    this.orderService.changeOrderFullyPaidStatus(orderId, isFullyPaid).subscribe( result => {
+      console.log('is fully paid ', result);
+    });
+  }
+
+  changeTransactionStatus(transactionId, isFulfilled){
+    isFulfilled = !isFulfilled;
+
+    this.transactionService.changeTransactionFulfilledStatus(transactionId, isFulfilled).subscribe( result => {
+      console.log('change transaction status', result);
     });
   }
 }

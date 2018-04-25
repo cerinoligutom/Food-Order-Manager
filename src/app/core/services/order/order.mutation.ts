@@ -52,3 +52,14 @@ mutation cancelOrder($orderId: ID!) {
   }
 }
 `;
+
+export const ChangeOrderFullyPaidStatusMutation = gql`
+mutation changeOrderFullyPaidStatus($orderId: ID!, $value: Boolean){
+  Order: changeOrderFullyPaidStatus(id: $orderId, value: $value){
+    id
+    isFullyPaid
+    isCancelled
+    created_at
+  }
+}
+`;

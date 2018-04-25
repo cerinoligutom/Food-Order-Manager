@@ -1,5 +1,5 @@
-import gql from 'graphql-tag';
-import { Transaction, Vendor } from '../models';
+import gql from "graphql-tag";
+import { Transaction, Vendor } from "../models";
 
 export interface AddTransactionInput {
   host_id: string;
@@ -32,6 +32,16 @@ export const AddTransactionMutation = gql`
       }
       description
       delivery_fee
+    }
+  }
+`;
+
+export const ChangeTransactionFulfilledStatus = gql`
+  mutation changeTransactionFulfilledStatus($transactionId: ID!, $value: Boolean) {
+    Transaction: changeTransactionFulfilledStatus(id: $transactionId, value: $value) {
+      id
+      is_fulfilled
+      created_at
     }
   }
 `;

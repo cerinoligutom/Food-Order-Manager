@@ -6,7 +6,8 @@ import {
   AddOrderInput,
   OrderMutationResponse,
   AddOrderMutation,
-  CancelOrderMutation
+  CancelOrderMutation,
+  ChangeOrderFullyPaidStatusMutation
 } from "./order.mutation";
 import {
   GetTransactionOrdersQueryResponse,
@@ -27,8 +28,8 @@ export class OrderService {
         }
       })
       .valueChanges.pipe(
-      map(result => result.data ? result.data.Transaction.Orders : [])
-    );
+        map(result => (result.data ? result.data.Transaction.Orders : []))
+      );
   }
 
   getOrder(orderId) {
@@ -59,6 +60,18 @@ export class OrderService {
         mutation: CancelOrderMutation,
         variables: {
           orderId: orderId
+        }
+      })
+      .pipe(map(result => result.data.Order));
+  }
+
+  changeOrderFullyPaidStatus(orderId, value) {
+    return this.apollo
+      .mutate<OrderMutationResponse>({
+        mutation: ChangeOrderFullyPaidStatusMutation,
+        variables: {
+          orderId: orderId,
+          value: value
         }
       })
       .pipe(map(result => result.data.Order));
