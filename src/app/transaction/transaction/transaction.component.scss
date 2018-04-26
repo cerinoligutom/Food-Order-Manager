@@ -51,6 +51,8 @@
     .order-item-actions{
       right:0;
       opacity:1;
+      border-top: 2px solid $purple;
+      border-bottom: 2px solid $purple;
     }
   }
 
@@ -62,7 +64,12 @@
     height:100%;
     transition: 0.3s;
     background: rgba(255,255,255, 0.7);
-    opacity:0;
+    opacity: 0;
+    width: 100%;
+    justify-content: flex-end;
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s;
 
     .edit, .cancel{
       color: $white;
@@ -103,8 +110,6 @@
       margin-left: 10px;
       justify-content: space-evenly;
     }
-
-
   }
 
   .order-item-comments {
@@ -134,4 +139,66 @@
   display: flex;
   flex-direction: column;
   margin: 10px 0;
+}
+
+// Order card
+.button-actions-container {
+  display: flex;
+
+  button:last-child {
+    margin-left: auto;
+  }
+
+  .cancel, .not-fully-paid {
+    color: $white;
+    background-color: $red;
+    border: 1px solid $red;
+
+    &:hover {
+      color: $red;
+      background-color: $white;
+    }
+  }
+
+  .fully-paid {
+    color: $white;
+    background-color: $purple;
+    border: 1px solid $purple;
+
+    &:hover {
+      color: $purple;
+      background-color: $white;
+    }
+  }
+}
+
+// Transaction summary card
+.transaction-button-actions-container {
+  display: flex;
+
+  button:last-child {
+    margin-left: auto;
+  }
+
+  .not-fulfilled {
+    color: $white;
+    background-color: $red;
+    border: 1px solid $red;
+
+    &:hover {
+      color: $red;
+      background-color: $white;
+    }
+  }
+
+  .fulfilled {
+    color: $white;
+    background-color: $purple;
+    border: 1px solid $purple;
+
+    &:hover {
+      color: $purple;
+      background-color: $white;
+    }
+  }
 }

@@ -53,9 +53,9 @@
               <h2>₱ {{ calculateTotalSum(order.OrderItems) | number:'.2'}}</h2>
             </div>
           </mat-card-content>
-          <mat-card-actions>
-            <button mat-raised-button color="warn" *ngIf="currentLoggedInUser.id === order.User.id" (click)="cancelOrder(order.id)">Cancel</button>
-            <button mat-raised-button color="primary" *ngIf="currentLoggedInUser.id === transaction?.Host.id" (click)="isFullyPaid(order.id, order.isFullyPaid)">
+          <mat-card-actions class="button-actions-container">
+            <button mat-raised-button class="cancel" *ngIf="currentLoggedInUser.id === order.User.id" (click)="cancelOrder(order.id)">Cancel</button>
+            <button mat-raised-button [ngClass]="{ 'fully-paid': order.isFullyPaid, 'not-fully-paid': !order.isFullyPaid }" *ngIf="currentLoggedInUser.id === transaction?.Host.id" (click)="isFullyPaid(order.id, order.isFullyPaid)">
               <mat-icon style="vertical-align: middle;" *ngIf="order.isFullyPaid">check_circle</mat-icon>
               <mat-icon style="vertical-align: middle;" *ngIf="!order.isFullyPaid">cancel</mat-icon>
               Fully Paid
@@ -107,8 +107,8 @@
             </div>
           </mat-list>
         </mat-card-content>
-        <mat-card-actions>
-          <button mat-raised-button color="primary" *ngIf="currentLoggedInUser.id === transaction?.Host.id" (click)="changeTransactionStatus(transaction.id, transaction.is_fulfilled)">
+        <mat-card-actions class="transaction-button-actions-container">
+          <button mat-raised-button [ngClass]="{ 'fulfilled': transaction.is_fulfilled, 'not-fulfilled': !transaction.is_fulfilled }" color="primary" *ngIf="currentLoggedInUser.id === transaction?.Host.id" (click)="changeTransactionStatus(transaction.id, transaction.is_fulfilled)">
             <mat-icon style="vertical-align: middle;" *ngIf="transaction.is_fulfilled">check_circle</mat-icon>
             <mat-icon style="vertical-align: middle;" *ngIf="!transaction.is_fulfilled">cancel</mat-icon>
             Fulfilled
