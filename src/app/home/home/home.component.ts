@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../core/services';
+import { UserService, AuthService } from '../../core/services';
 import { User } from '../../core/services/models';
 import { BaseComponent } from '@app/components';
 
@@ -21,7 +21,7 @@ export class HomeComponent extends BaseComponent implements OnInit {
     { name: 'My Profile', path: ['/user'] }
   ];
 
-  constructor(private userService: UserService) { super(); }
+  constructor(private userService: UserService, private authService: AuthService) { super(); }
 
   ngOnInit() {
     this.userService.getCurrentLoggedInUser().subscribe(user => {
@@ -30,8 +30,6 @@ export class HomeComponent extends BaseComponent implements OnInit {
   }
 
   logout() {
-    // TODO
-    alert('logout');
+    this.authService.logout();
   }
-
 }

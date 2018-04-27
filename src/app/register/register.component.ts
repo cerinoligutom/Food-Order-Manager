@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { EmailValidator } from '@angular/forms';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
+import { AuthService } from '@app/services';
 
 class RegisterForm {
   username = '';
@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   errors: any[] = [];
 
   constructor(
-    private http: HttpClient,
+    private authService: AuthService,
     private snackBar: MatSnackBar,
     private router: Router
   ) {}
@@ -33,17 +33,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   ngOnInit() {}
 
   onSubmit(form: RegisterForm) {
-    console.log(form);
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Accept: 'appication/json'
-      })
-    };
-
-    this.registerObservable = this.http
-      .post('http://graphql-dev.fom.zeferinix.com/auth/signup', form, httpOptions)
+    this.registerObservable = this.authService.signup(form)
       .subscribe(
         userId => {
           this.errors = [];

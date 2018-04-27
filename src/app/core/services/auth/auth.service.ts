@@ -3,9 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Subscription } from 'rxjs/Subscription';
 
 const AUTH_CONFIG = {
-    BASE_URL: 'http://graphql-dev.fom.zeferinix.com/auth/'
-    // BASE_URL: 'http://localhost:3000/auth/'
-
+  BASE_URL: 'http://graphql-dev.fom.zeferinix.com/auth/'
+  // BASE_URL: 'http://localhost:3000/auth/'
 };
 
 const httpOptions = {
@@ -16,19 +15,22 @@ const httpOptions = {
 
 @Injectable()
 export class AuthService {
-
-  constructor(
-    private http: HttpClient
-  ) { }
-
+  constructor(private http: HttpClient) {}
 
   login(form) {
-    return this.http.post(AUTH_CONFIG.BASE_URL + 'login', form, httpOptions)
+    return this.http
+      .post(AUTH_CONFIG.BASE_URL + 'login', form, httpOptions)
       .map((res: any) => res.token);
   }
 
-  logout() {
+  signup(form) {
+    return this.http
+      .post(AUTH_CONFIG.BASE_URL + 'signup', form, httpOptions)
+      .map((res: any) => res);
+  }
 
+  logout() {
+    localStorage.clear();
   }
 
   isLoggedIn() {
