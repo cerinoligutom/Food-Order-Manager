@@ -4,7 +4,12 @@
       <img src="/assets/logo.png">
       <div class="info-container" *ngIf="fromRegistration">
         <div class="item info">
-          <span>Please login with your username/email!</span>
+          <span>Please login with your username/email.</span>
+        </div>
+      </div>
+      <div class="info-container" *ngIf="fromLogout">
+        <div class="item info">
+          <span>You have successfully logged out.</span>
         </div>
       </div>
       <div class="info-container" *ngIf="errorMessage">

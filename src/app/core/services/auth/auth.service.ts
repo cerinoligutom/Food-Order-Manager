@@ -30,7 +30,10 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.clear();
+    return new Promise((resolve, reject) => {
+      localStorage.clear()
+      resolve();
+    });
   }
 
   isLoggedIn() {

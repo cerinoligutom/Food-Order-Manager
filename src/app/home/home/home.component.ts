@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService, AuthService } from '../../core/services';
 import { User } from '../../core/services/models';
 import { BaseComponent } from '@app/components';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -17,11 +18,15 @@ export class HomeComponent extends BaseComponent implements OnInit {
     { name: 'Admin', path: ['/admin'] }
   ];
 
-  userRoutes = [
-    { name: 'My Profile', path: ['/user'] }
-  ];
+  userRoutes = [{ name: 'My Profile', path: ['/user'] }];
 
-  constructor(private userService: UserService, private authService: AuthService) { super(); }
+  constructor(
+    private userService: UserService,
+    private authService: AuthService,
+    private router: Router
+  ) {
+    super();
+  }
 
   ngOnInit() {
     this.userService.getCurrentLoggedInUser().subscribe(user => {
@@ -30,6 +35,8 @@ export class HomeComponent extends BaseComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout();
+    this.authService.logout().then(() => {
+      this.router.navigate(['/login', { fromLogout: true }])
+    });
   }
 }

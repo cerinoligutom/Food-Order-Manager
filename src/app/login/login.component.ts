@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   loginSubscription: Subscription = new Subscription();
   fromRegistration: boolean = false;
+  fromLogout: boolean = false;
   errorMessage: any = '';
 
   constructor(
@@ -40,9 +41,14 @@ export class LoginComponent implements OnInit, OnDestroy {
     if (this.route.snapshot.paramMap.get('fromRegistration')) {
       this.fromRegistration = true;
     }
+
+    if (this.route.snapshot.paramMap.get('fromLogout')) {
+      this.fromLogout = true;
+    }
   }
 
   onSubmit(form: LoginForm) {
+    this.fromLogout = false;
 
     this.loginSubscription = this.authService.login(form).subscribe(token => {
       this.snackBar.open('Successfully logged in!', 'Dismiss', {
