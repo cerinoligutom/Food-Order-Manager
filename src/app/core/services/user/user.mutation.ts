@@ -1,5 +1,5 @@
-import gql from 'graphql-tag';
-import { User } from './user.model';
+import gql from "graphql-tag";
+import { User } from "./user.model";
 
 export interface EditUserInput {
   id: string;
@@ -12,6 +12,9 @@ export interface EditUserInput {
   image: string;
 }
 
+export interface UserMutationResponse {
+  User: User;
+}
 export const EditUserMutation = gql`
   mutation editUser($editUserInput: EditUserInput) {
     User: editUser(input: $editUserInput) {
@@ -32,5 +35,17 @@ export const EditUserMutation = gql`
       is_active
       last_active
     }
+  }
+`;
+
+export const AddUserRoleMutation = gql`
+  mutation addUserRole($userId: ID!, $roleId: ID!) {
+    isRoleChanged: addUserRole(userId: $userId, roleId: $roleId)
+  }
+`;
+
+export const RemoveUserRoleMutation = gql`
+  mutation removeUserRole($userId: ID!, $roleId: ID!) {
+    isRoleChanged: removeUserRole(userId: $userId, roleId: $roleId)
   }
 `;

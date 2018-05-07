@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container admin-panel-container">
   <mat-accordion>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
@@ -60,7 +60,8 @@
                 <!-- image Column -->
                 <ng-container matColumnDef="image">
                   <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
-                  <mat-cell *matCellDef="let element"> <img class="product-image" [src]="element.image || defaultProductImage" > </mat-cell>
+                  <mat-cell *matCellDef="let element">
+                    <img class="product-image" [src]="element.image || defaultProductImage"> </mat-cell>
                 </ng-container>
 
                 <!-- Name Column -->
@@ -82,6 +83,56 @@
           </div>
         </mat-expansion-panel>
       </mat-accordion>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+
+
+  <mat-accordion>
+    <mat-expansion-panel (opened)="onUsersExpand()">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Users
+        </mat-panel-title>
+        <mat-panel-description>
+          Manage users
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+
+      <div class="mat-elevation-z8">
+
+        <mat-form-field>
+          <input matInput (keyup)="applyUserFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+
+        <mat-table #table [dataSource]="userDataSource">
+
+          <!-- image Column -->
+          <ng-container matColumnDef="image">
+            <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <img class="product-image" [src]="element.image || defaultProductImage"> </mat-cell>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.username}} </mat-cell>
+          </ng-container>
+
+          <!-- Roles Column -->
+          <ng-container matColumnDef="admin">
+            <mat-header-cell *matHeaderCellDef> Admin </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <mat-slide-toggle color="warn" [(checked)]="element.is_admin" [disabled]="disableRoleToggle" (click)="toggleUserRole(element.id, adminId, element.is_admin)"></mat-slide-toggle>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="userDisplayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: userDisplayedColumns;"></mat-row>
+        </mat-table>
+      </div>
 
     </mat-expansion-panel>
   </mat-accordion>

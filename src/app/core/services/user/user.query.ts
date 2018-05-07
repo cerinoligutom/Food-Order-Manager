@@ -1,8 +1,16 @@
-import gql from 'graphql-tag';
-import { User } from '../models';
+import gql from "graphql-tag";
+import { User, Role } from "../models";
 
 export interface UserQueryResponse {
   User: User;
+}
+
+export interface UsersQueryResponse {
+  Users: User[];
+}
+
+export interface RolesQueryResponse {
+  Roles: Role[];
 }
 
 export const GetCurrentLoggedInUserQuery = gql`
@@ -52,25 +60,53 @@ export const GetUserQuery = gql`
 `;
 
 export const GetUserOrdersQuery = gql`
-query GetUserOrders($id: ID!) {
-  User(id: $id) {
-    id
-    Orders {
+  query GetUserOrders($id: ID!) {
+    User(id: $id) {
       id
-      created_at
-      Transaction {
+      Orders {
         id
-      }
-      OrderItems {
-        id
-        quantity
-        Product {
+        created_at
+        Transaction {
           id
-          name
-          image
+        }
+        OrderItems {
+          id
+          quantity
+          Product {
+            id
+            name
+            image
+          }
         }
       }
     }
   }
-}
+`;
+
+export const GetAllUsersQuery = gql`
+  query GetAllUsers {
+    Users {
+      id
+      username
+      email
+      image
+      first_name
+      middle_name
+      last_name
+      birthdate
+      confirmed
+      created_at
+      is_active
+      is_admin
+    }
+  }
+`;
+
+export const GetUserRoles = gql`
+  query getAllRoles {
+    Roles {
+      id
+      name
+    }
+  }
 `;

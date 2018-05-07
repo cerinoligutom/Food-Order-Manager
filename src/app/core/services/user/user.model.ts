@@ -19,3 +19,8 @@ export interface User {
   last_active: boolean;
   Orders: [Order]
 }
+
+export interface Role{
+  id: string;
+  name: string;
+}

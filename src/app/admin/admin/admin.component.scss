@@ -10,3 +10,9 @@
   max-width: 100px;
   width: 100px;
 }
+
+.admin-panel-container{
+  .mat-expansion-panel-header-description{
+    flex-grow: 1;
+  }
+}
