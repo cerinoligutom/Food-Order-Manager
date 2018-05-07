@@ -3,7 +3,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import {
   TransactionService,
   OrderService,
-  OrderItemService
+  OrderItemService,
+  UserService
 } from "@app/services";
 import { BaseComponent } from "@app/components";
 import { Order } from "@app/models";
@@ -11,6 +12,8 @@ import { MatDialog } from "@angular/material";
 import { AddOrderFormComponent } from "../add-order-form/add-order-form.component";
 import { EditOrderItemFormComponent } from "../edit-order-item-form/edit-order-item-form.component";
 import { ConfirmationDialogComponent } from "../../shared/confirmation-dialog/confirmation-dialog.component";
+import * as _ from 'lodash';
+import { UpdateOrderComponent } from "../update-order/update-order.component";
 
 class TransactionFactory {
   formatTransactionSummaryData(orders: Order[]) {
@@ -72,6 +75,7 @@ export class TransactionComponent extends BaseComponent implements OnInit {
   transaction: any;
   icon: string;
   transactionOrders: Order[];
+  orderIndex: number = -1;
 
   transactionFactory = new TransactionFactory();
 
@@ -86,6 +90,7 @@ export class TransactionComponent extends BaseComponent implements OnInit {
     private router: Router
   ) {
     super();
+
   }
 
   ngOnInit() {
@@ -100,6 +105,7 @@ export class TransactionComponent extends BaseComponent implements OnInit {
         .getOrdersByTransaction(params["id"])
         .subscribe(transactionOrders => {
           this.transactionOrders = [...transactionOrders].reverse();
+          this.checkExistingOrder();
 
           this.transactionSummary = this.formatTransactionSummaryData(
             transactionOrders
@@ -110,12 +116,43 @@ export class TransactionComponent extends BaseComponent implements OnInit {
     });
   }
 
+  checkExistingOrder () {
+    let currentUserId = this.currentLoggedInUser.id;
+
+    this.orderIndex = _.findIndex(this.transactionOrders, (transaction) => { return transaction.User.id === currentUserId });
+  }
+
+  openUpdateOrderDialog(transactionId, vendorId, order) {
+    const dialogRef = this.dialog.open(UpdateOrderComponent, {
+      width: "1200px",
+      data: {
+        transactionId: transactionId,
+        vendorId: vendorId,
+        order: order
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(order => {
+      if (order) {
+        let usersOrder = this.transactionOrders[this.orderIndex];
+
+        this.transactionOrders[this.orderIndex] = { ...this.transactionOrders[this.orderIndex] };
+
+        this.transactionOrders[this.orderIndex].OrderItems = [...this.transactionOrders[this.orderIndex].OrderItems, ...order];
+
+        this.transactionSummary = this.formatTransactionSummaryData(
+          this.transactionOrders
+        );
+      }
+    });
+  }
+
   openAddOrderDialog(transactionId, vendorId) {
     const dialogRef = this.dialog.open(AddOrderFormComponent, {
       width: "1200px",
       data: {
         transactionId: transactionId,
-        vendorId: vendorId
+        vendorId: vendorId,
       }
     });
 
@@ -126,6 +163,8 @@ export class TransactionComponent extends BaseComponent implements OnInit {
           this.transactionOrders
         );
       }
+
+      this.checkExistingOrder();
     });
   }
 
@@ -171,6 +210,9 @@ export class TransactionComponent extends BaseComponent implements OnInit {
       if (orderItem) {
         this.orderItemService.editOrderItem(orderItem).subscribe(result => {
           console.log("edited", result);
+          // todo upon conversion to component modify received order items input
+          // for now retrieve from api
+          this.ngOnInit();
         });
       }
     });

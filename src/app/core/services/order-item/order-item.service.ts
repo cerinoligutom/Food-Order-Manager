@@ -8,9 +8,10 @@ import { map } from "rxjs/operators";
 import {
   OrderItemMutationResponse,
   EditOrderItemMutation,
-  CancelOrderItemMutation
+  CancelOrderItemMutation,
+  AddOrderItemMutation
 } from "./order-item.mutation";
-import { EditOrderItemInput } from "@app/models";
+import { EditOrderItemInput, AddOrderInput, AddOrderItemInput } from "@app/models";
 
 class OrderItemFactory {
   toEditOrderItemRequest(orderItem: EditOrderItemInput) {
@@ -41,6 +42,16 @@ export class OrderItemService {
           return result.data.OrderItem;
         })
       );
+  }
+
+  addOrderItem(input: AddOrderItemInput[]) {
+    return this.apollo
+      .mutate<OrderItemMutationResponse>({
+        mutation: AddOrderItemMutation,
+        variables: {
+          addOrderItemInput: input
+        }
+      }).pipe(map(result => result.data.OrderItem));
   }
 
   editOrderItem(input: EditOrderItemInput) {

@@ -6,9 +6,8 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { startWith } from 'rxjs/operators/startWith';
 import { map } from 'rxjs/operators/map';
-import { AddInitialOrderItemInput, Product } from '@app/models';
+import { AddInitialOrderItemInput, Product, Order, AddOrderInput } from '@app/models';
 import { BaseComponent } from '@app/components';
-import { AddOrderInput } from '../../core/services/order/order.mutation';
 
 class AddOrderFormFactory {
   toAddOrderItemInput(input: OrderItemInput[]): AddInitialOrderItemInput[] {
@@ -71,6 +70,8 @@ export class AddOrderFormComponent extends BaseComponent implements OnInit {
         startWith(''),
         map((product: any) => product ? this.filterProducts(product) : this.vendorProducts.slice())
       );
+
+      console.log("ORDER ITEMS: ", this.orderItems);
     });
   }
 
@@ -78,7 +79,7 @@ export class AddOrderFormComponent extends BaseComponent implements OnInit {
     let name = (product && product.name ? product.name : product);
 
     console.log('name', name);
-     return this.vendorProducts.filter(product => product.name.toLowerCase().indexOf(name.toLowerCase()) !== -1);
+    return this.vendorProducts.filter(product => product.name.toLowerCase().indexOf(name.toLowerCase()) !== -1);
   }
 
   getSelectedProduct(product) {

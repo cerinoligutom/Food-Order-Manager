@@ -3,7 +3,6 @@ import { Apollo } from "apollo-angular";
 import { GetOrderQueryResponse, GetOrderQuery } from "./order.query";
 import { map } from "rxjs/operators";
 import {
-  AddOrderInput,
   OrderMutationResponse,
   AddOrderMutation,
   CancelOrderMutation,
@@ -13,6 +12,7 @@ import {
   GetTransactionOrdersQueryResponse,
   GetTransactionOrders
 } from "../transaction/transaction.query";
+import { AddOrderInput } from "@app/models";
 
 @Injectable()
 export class OrderService {

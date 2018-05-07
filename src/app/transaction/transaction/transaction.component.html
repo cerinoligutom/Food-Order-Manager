@@ -8,7 +8,8 @@
           <mat-card-title>{{ transaction?.Vendor.name }}</mat-card-title>
           <mat-card-subtitle>{{ formatDates(transaction?.created_at.raw).shortDate }} {{ formatDates(transaction?.created_at.raw).time }}</mat-card-subtitle>
         </mat-card-header>
-        <button mat-raised-button color="warn" (click)="openAddOrderDialog(transaction?.id, transaction?.Vendor.id)">Order NOW!</button>
+        <button mat-raised-button color="warn" *ngIf="orderIndex == -1" (click)="openAddOrderDialog(transaction?.id, transaction?.Vendor.id)">Order NOW!</button>
+        <button mat-raised-button color="warn" *ngIf="orderIndex != -1" (click)="openUpdateOrderDialog(transaction?.id, transaction?.Vendor.id, transactionOrders[orderIndex])">Add More NOW!</button>
       </mat-card>
     </div>
   </div>

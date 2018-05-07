@@ -23,3 +23,24 @@ mutation cancelOrderItem($orderItemId: ID!) {
   }
 }
 `;
+
+export const AddOrderItemMutation = gql`
+  mutation addOrderItem($addOrderItemInput: [AddOrderItemInput]) {
+    OrderItem: addOrderItems(input: $addOrderItemInput) {
+      id
+      Order {
+        id
+      }
+      Product{
+        id
+        name
+        price
+        image
+      }
+      quantity
+      comment
+      is_cancelled
+      created_at
+    }
+  }
+`;

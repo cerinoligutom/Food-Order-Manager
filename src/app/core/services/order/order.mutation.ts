@@ -1,11 +1,5 @@
 import gql from 'graphql-tag';
-import { Order, AddInitialOrderItemInput } from '../models';
-
-export interface AddOrderInput {
-  transaction_id: string;
-  user_id: string;
-  orderItems: AddInitialOrderItemInput[]
-}
+import { Order } from '../models';
 
 export interface OrderMutationResponse{
   Order: Order;
